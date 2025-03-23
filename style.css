@@ -1,17 +1,16 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --dark-blue: #070F2B;
     --midnight-blue: #1B1A55;
     --steel-blue: #535C91;
     --lavender-gray: #9290C3;
     --pure-white: #ffffff;
 }
-
 
 body {
     width: 100%;
@@ -23,8 +22,10 @@ body {
     align-items: center;
 }
 
-.container{
-    width: 900px;
-    height: 700px;
+.container {
     border: 1px solid var(--pure-white);
+}
+
+.paddle {
+    background-color: var(--steel-blue);
 }
