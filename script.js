@@ -47,7 +47,6 @@ function createBall(container) {
 }
 
 function movePaddle(event, paddleDiv) {
-   
     if (event.key === 'ArrowLeft' && paddle.x !== 0) {
         paddle.x -= 10
     }
@@ -59,8 +58,7 @@ function movePaddle(event, paddleDiv) {
     
 
     paddleStyle(paddleDiv)
-    // requestAnimationFrame(() => {
-    // })
+   
 }
 
 function paddleStyle(paddleDiv) {
@@ -73,8 +71,8 @@ function paddleStyle(paddleDiv) {
 
 function ballStyle(ballDiv) {
     ballDiv.style.cssText = `
-    width: ${20}px;
-    height: ${20}px;
+    width: ${ball.width}px;
+    height: ${ball.height}px;
     transform: translate(${ball.x}px, ${ball.y}px);
 `
 }
