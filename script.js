@@ -56,7 +56,7 @@ function createBall(container) {
 }
 
 function movePaddle(event, paddleDiv) {
-    if (event.key === 'ArrowLeft' && paddle.x !== 0) {
+    if (event.key === 'ArrowLeft' && paddle.x > 0) {
         paddle.x -= 10
     }
 
