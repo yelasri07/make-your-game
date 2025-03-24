@@ -2,18 +2,27 @@ let containerWidth = 800;
 let containerHeight = 800;
 let paddleWidth = 160;
 let paddleHeight = 20;
+let ballWidth = 20;
+let ballHeight = 20
 let paddle = {
     x: containerHeight / 2 - paddleWidth / 2,
     y: containerHeight - paddleHeight - 10,
     width: paddleWidth,
     height: paddleHeight,
 }
+let ball = {
+    x: containerWidth / 2,
+    y: paddle.y - 43,
+    width: ballWidth,
+    height: ballHeight,
+}
 
 addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     container.style.width = containerWidth + 'px'
-    container.style.height = containerHeight + 'px'
+    container.style.height = containerHeight    + 'px'
     const paddleDiv = createPaddle(container)
+    const ballDiv = createBall(container)
     addEventListener('keydown', (event) => {
         movePaddle(event, paddleDiv)
     })
@@ -22,22 +31,50 @@ addEventListener('DOMContentLoaded', () => {
 function createPaddle(container) {
     const paddleDiv = document.createElement('div')
     paddleDiv.className = 'paddle'
-    paddleDiv.style.cssText = `
-        width: ${paddle.width}px;
-        height: ${paddle.height}px;
-        transform: translate(${paddle.x}px, ${paddle.y}px);
-    `
+    paddleStyle(paddleDiv)
     container.append(paddleDiv)
 
     return paddleDiv
 }
 
+function createBall(container) {
+    const ballDiv = document.createElement('div')
+    ballDiv.className = 'ball'
+    ballStyle(ballDiv)
+    container.append(ballDiv)
+
+    return ballDiv
+}
+
 function movePaddle(event, paddleDiv) {
-    if (event.key === 'ArrowLeft') {
-        console.log(event.key)
+   
+    if (event.key === 'ArrowLeft' && paddle.x !== 0) {
+        paddle.x -= 10
     }
 
-    if (event.key === 'ArrowRight') {
-        console.log(event.key)
+    if (event.key === 'ArrowRight' && paddle.x + paddle.width < containerWidth) {
+        paddle.x += 10
     }
+    console.log(paddle.x)
+    
+
+    paddleStyle(paddleDiv)
+    // requestAnimationFrame(() => {
+    // })
+}
+
+function paddleStyle(paddleDiv) {
+    paddleDiv.style.cssText = `
+        width: ${paddle.width}px;
+        height: ${paddle.height}px;
+        transform: translate(${paddle.x}px, ${paddle.y}px);
+    `
+}
+
+function ballStyle(ballDiv) {
+    ballDiv.style.cssText = `
+    width: ${20}px;
+    height: ${20}px;
+    transform: translate(${ball.x}px, ${ball.y}px);
+`
 }

@@ -29,3 +29,8 @@ body {
 .paddle {
     background-color: var(--lavender-gray);
 }
+
+.ball{
+    background-color: var(--pure-white);
+    border-radius: 50%;
+}
