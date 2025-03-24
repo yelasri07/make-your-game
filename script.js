@@ -15,8 +15,8 @@ let ball = {
     y: paddle.y - 43,
     width: ballWidth,
     height: ballHeight,
-    dx: 4 ,
-    dy: -4,
+    dx: 5,
+    dy: -5,
 }
 
 addEventListener('DOMContentLoaded', () => {
@@ -64,20 +64,29 @@ function movePaddle(event, paddleDiv) {
     paddleStyle(paddleDiv)
 }
 
-let a = false
-
 function moveBall(event, ballDiv) {
     requestAnimationFrame(() => {
         moveBall(event, ballDiv)
     })
 
-    if (ball.x > containerWidth && !a) {
+    if (ball.x > containerWidth - (ball.width + 10)) {
         ball.dx = -ball.dx
-        a = true    
-    } else {
-        ball.x += ball.dx
-        ball.y += ball.dy
     }
+
+    if (ball.y < -20) {
+        ball.dy = -ball.dy
+    }
+
+    if (ball.x < 0) {
+        ball.dx = -ball.dx
+    }
+
+    if (ball.y > paddle.y - 43) {
+        ball.dy = -ball.dy
+    }
+
+    ball.x += ball.dx
+    ball.y += ball.dy
 
     ballStyle(ballDiv)
 }
