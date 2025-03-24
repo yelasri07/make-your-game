@@ -15,16 +15,22 @@ let ball = {
     y: paddle.y - 43,
     width: ballWidth,
     height: ballHeight,
+    dx: 4 ,
+    dy: -4,
 }
 
 addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     container.style.width = containerWidth + 'px'
-    container.style.height = containerHeight    + 'px'
+    container.style.height = containerHeight + 'px'
     const paddleDiv = createPaddle(container)
     const ballDiv = createBall(container)
     addEventListener('keydown', (event) => {
-        movePaddle(event, paddleDiv)
+        if (event.key === ' ') {
+            moveBall(event, ballDiv)
+        } else {
+            movePaddle(event, paddleDiv)
+        }
     })
 })
 
@@ -54,11 +60,26 @@ function movePaddle(event, paddleDiv) {
     if (event.key === 'ArrowRight' && paddle.x + paddle.width < containerWidth) {
         paddle.x += 10
     }
-    console.log(paddle.x)
-    
 
     paddleStyle(paddleDiv)
-   
+}
+
+let a = false
+
+function moveBall(event, ballDiv) {
+    requestAnimationFrame(() => {
+        moveBall(event, ballDiv)
+    })
+
+    if (ball.x > containerWidth && !a) {
+        ball.dx = -ball.dx
+        a = true    
+    } else {
+        ball.x += ball.dx
+        ball.y += ball.dy
+    }
+
+    ballStyle(ballDiv)
 }
 
 function paddleStyle(paddleDiv) {
