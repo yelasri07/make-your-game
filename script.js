@@ -10,9 +10,10 @@ let paddle = {
     width: paddleWidth,
     height: paddleHeight,
 }
+
 let ball = {
     x: containerWidth / 2,
-    y: paddle.y - 43,
+    y: paddle.y - ballHeight * 2 - 5,
     width: ballWidth,
     height: ballHeight,
     dx: 5,
@@ -69,19 +70,19 @@ function moveBall(event, ballDiv) {
         moveBall(event, ballDiv)
     })
 
-    if (ball.x > containerWidth - (ball.width + 10)) {
+    if (ball.x + ball.width >= containerWidth) {
         ball.dx = -ball.dx
     }
 
-    if (ball.y < -20) {
+    if (ball.y <= 0) {
         ball.dy = -ball.dy
     }
 
-    if (ball.x < 0) {
+    if (ball.x <= 0) {
         ball.dx = -ball.dx
     }
 
-    if (ball.y > paddle.y - 43) {
+    if (ball.y + ball.height>= containerHeight) {
         ball.dy = -ball.dy
     }
 

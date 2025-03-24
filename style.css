@@ -1,7 +1,7 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
 }
 
 :root {
@@ -23,14 +23,17 @@ body {
 }
 
 .container {
-    border: 1px solid var(--pure-white);
+    border: 2px solid red;
+    position: relative;
 }
 
 .paddle {
     background-color: var(--lavender-gray);
+    position: absolute;
 }
 
 .ball{
     background-color: var(--pure-white);
     border-radius: 50%;
+    position: absolute;
 }
