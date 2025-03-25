@@ -27,6 +27,7 @@ addEventListener('DOMContentLoaded', () => {
     container.style.width = containerWidth + 'px'
     container.style.height = containerHeight + 'px'
     const paddleDiv = createPaddle(container)
+
     const ballDiv = createBall(container)
     addEventListener('keydown', (event) => {
         if (event.key === ' ') {
