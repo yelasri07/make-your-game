@@ -97,9 +97,9 @@ function movePaddle(paddleDiv) {
 }
 
 function moveBall(event, ballDiv) {
-    // let reqAnId = requestAnimationFrame(() => {
-    //     moveBall(event, ballDiv)
-    // })
+    let reqAnId = requestAnimationFrame(() => {
+        moveBall(event, ballDiv)
+    })
 
     if (ball.x + ball.width >= containerWidth || ball.x <= 0) {
         ball.dx = -ball.dx
@@ -111,20 +111,10 @@ function moveBall(event, ballDiv) {
 
     if (ball.y + ball.height >= paddle.y && ball.x >= paddle.x && ball.x <= paddle.x + paddle.width) {
         let collidePoint = ball.x - (paddle.x + paddle.width / 2)
-        // console.log(collidePoint)
-        if (collidePoint === 0) {
-            ball.dy = -(Math.cos(0) * 5)
-            ball.dx = Math.sin(0) * 5
-        } else if (collidePoint < 0) {
-            ball.dy = -(Math.cos(-Math.PI / 3) * 5)
-            ball.dx = Math.sin(-Math.PI / 3) * 5
-
-        } else if (collidePoint > 0) {
-            ball.dy = -(Math.cos(Math.PI / 3) * 5)
-            ball.dx = Math.sin(Math.PI / 3) * 5
-            console.log(ball.dy, ball.dx)
-        }
-        // ball.dy = -ball.dy
+        collidePoint = collidePoint / (paddle.width / 2)
+        let angle = collidePoint * (Math.PI / 3)
+        ball.dx = 5 * Math.sin(angle)
+        ball.dy = -(5 * Math.cos(angle))
     } else if (ball.y + ball.height >= containerHeight) {
         life--
         cancelAnimationFrame(reqAnId)
@@ -133,24 +123,8 @@ function moveBall(event, ballDiv) {
         return
     }
 
-    // if (ball.y >= paddle.y && ball.y <= paddle.y + paddle.height
-    //     && ball.x >= paddle.x && ball.x <= paddle.x + paddle.width
-    // ) {
-    // } else if (ball.y + ball.height >= containerHeight) {
-    //     life--
-    //     cancelAnimationFrame(reqAnId)
-    //     resetBall()
-    //     ballStyle(ballDiv)
-    //     return
-    // }
-
     ball.x += ball.dx
     ball.y += ball.dy
-
-    // console.log('------------------')
-
-    console.log(`ball x => ${ball.x} || ball y => ${ball.y}`)
-    console.log(`paddle x => ${paddle.x} || paddle y => ${paddle.y}`)
 
 
     ballStyle(ballDiv)
