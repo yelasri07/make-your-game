@@ -12,11 +12,11 @@ let paddle = {
 }
 
 let ball = {
-    x: containerWidth / 2,
+    x: containerWidth / 2 - ballWidth / 2,
     y: paddle.y - ballHeight * 2,
     width: ballWidth,
     height: ballHeight,
-    dx: 5,
+    dx: 6 *  (Math.random() * 2 - 1),
     dy: -5,
 }
 
@@ -113,13 +113,14 @@ function moveBall(event, ballDiv) {
         let collidePoint = ball.x - (paddle.x + paddle.width / 2)
         collidePoint = collidePoint / (paddle.width / 2)
         let angle = collidePoint * (Math.PI / 3)
-        ball.dx = 5 * Math.sin(angle)
-        ball.dy = -(5 * Math.cos(angle))
+        ball.dx = 6 * Math.sin(angle)
+        ball.dy = -(6 * Math.cos(angle))
     } else if (ball.y + ball.height >= containerHeight) {
         life--
         cancelAnimationFrame(reqAnId)
         resetBall()
         ballStyle(ballDiv)
+        console.log(ball.dx)
         return
     }
 
@@ -149,6 +150,6 @@ function ballStyle(ballDiv) {
 function resetBall() {
     ball.x = containerWidth / 2
     ball.y = paddle.y - ballHeight * 2
-    ball.dx = 5
+    ball.dx = 6 *  (Math.random() * 2 - 1)
     ball.dy = -5
 }
