@@ -13,7 +13,7 @@ let paddle = {
 
 let ball = {
     x: containerWidth / 2 - ballWidth / 2,
-    y: paddle.y - ballHeight * 2,
+    y: paddle.y - ballHeight * 1.2,
     width: ballWidth,
     height: ballHeight,
     dx: 6 *  (Math.random() * 2 - 1),
@@ -120,7 +120,6 @@ function moveBall(event, ballDiv) {
         cancelAnimationFrame(reqAnId)
         resetBall()
         ballStyle(ballDiv)
-        console.log(ball.dx)
         return
     }
 
@@ -148,8 +147,8 @@ function ballStyle(ballDiv) {
 }
 
 function resetBall() {
-    ball.x = containerWidth / 2
-    ball.y = paddle.y - ballHeight * 2
-    ball.dx = 6 *  (Math.random() * 2 - 1)
-    ball.dy = -5
+    ball.x = containerWidth / 2 - ballWidth / 2;
+    ball.y = paddle.y - ballHeight * 1.2;
+    ball.dx = 6 *  (Math.random() * 2 - 1);
+    ball.dy = -5;
 }
