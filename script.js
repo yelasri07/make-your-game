@@ -85,12 +85,12 @@ function movePaddle(paddleDiv) {
         movePaddle(paddleDiv)
     })
 
-    if (left && paddle.x > 0 && left) {
-        paddle.x -= 10
+    if (left && paddle.x > 0 && left) { 
+        paddle.x -= 5
     }
 
     if (right && paddle.x + paddle.width < containerWidth && right) {
-        paddle.x += 10
+        paddle.x += 5
     }
 
     paddleStyle(paddleDiv)
@@ -109,7 +109,7 @@ function moveBall(event, ballDiv) {
         ball.dy = -ball.dy
     }
 
-    if (ball.y + ball.height >= paddle.y && ball.x >= paddle.x && ball.x <= paddle.x + paddle.width) {
+    if (ball.y + ball.height >= paddle.y && ball.x + ball.width >= paddle.x && ball.x <= paddle.x + paddle.width) {
         let collidePoint = ball.x - (paddle.x + paddle.width / 2)
         collidePoint = collidePoint / (paddle.width / 2)
         let angle = collidePoint * (Math.PI / 3)
@@ -125,7 +125,6 @@ function moveBall(event, ballDiv) {
 
     ball.x += ball.dx
     ball.y += ball.dy
-
 
     ballStyle(ballDiv)
 }

@@ -30,6 +30,7 @@ body {
 .paddle {
     background-color: var(--lavender-gray);
     position: absolute;
+    border-radius: 10px;
 }
 
 .ball{
