@@ -4,20 +4,25 @@ let paddleWidth = 160;
 let paddleHeight = 20;
 let ballWidth = 20;
 let ballHeight = 20
-let paddle = {
+const paddle = {
     x: containerHeight / 2 - paddleWidth / 2,
     y: containerHeight - paddleHeight - 5,
     width: paddleWidth,
     height: paddleHeight,
 }
 
-let ball = {
+const ball = {
     x: containerWidth / 2 - ballWidth / 2,
     y: paddle.y - ballHeight * 1.2,
     width: ballWidth,
     height: ballHeight,
     dx: 6 *  (Math.random() * 2 - 1),
     dy: -5,
+}
+
+const brick = {
+    width: 55,
+    height: 20,
 }
 
 let life = 3;
