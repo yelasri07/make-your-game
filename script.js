@@ -159,6 +159,10 @@ function moveBall(event, ballDiv) {
     ballStyle(ballDiv)
 }
 
+function delBrick() {
+    // for (let)
+}
+
 function paddleStyle(paddleDiv) {
     paddleDiv.style.cssText = `
         width: ${paddle.width}px;
