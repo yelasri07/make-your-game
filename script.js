@@ -41,8 +41,8 @@ addEventListener('DOMContentLoaded', () => {
     container.style.width = containerWidth + 'px'
     container.style.height = containerHeight + 'px'
     const paddleDiv = createPaddle(container)
-
     const ballDiv = createBall(container)
+    createBricks(container)
     addEventListener('keydown', (event) => {
         if (event.key === ' ') {
             moveBall(event, ballDiv)
@@ -72,23 +72,6 @@ addEventListener('DOMContentLoaded', () => {
             animationId = undefined;
         }
     })
-
-    for (let i = 0; i < brick.row; i++) {
-        bricks[i] = [];
-        for (let j = 0; j < brick.column; j++) {
-            bricks[i][j] = {
-                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
-                status: true,
-            }
-
-            const brickDiv = document.createElement('div')
-            brickDiv.className = 'brick'
-
-            brickStyle(brickDiv, bricks[i][j])
-            container.append(brickDiv)
-        }
-    }
 })
 
 function createPaddle(container) {
@@ -107,6 +90,25 @@ function createBall(container) {
     container.append(ballDiv)
 
     return ballDiv
+}
+
+function createBricks(container) {
+    for (let i = 0; i < brick.row; i++) {
+        bricks[i] = [];
+        for (let j = 0; j < brick.column; j++) {
+            bricks[i][j] = {
+                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+                status: true,
+            }
+
+            const brickDiv = document.createElement('div')
+            brickDiv.className = 'brick'
+
+            brickStyle(brickDiv, bricks[i][j])
+            container.append(brickDiv)
+        }
+    }
 }
 
 function movePaddle(paddleDiv) {
