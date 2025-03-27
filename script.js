@@ -77,8 +77,9 @@ addEventListener('DOMContentLoaded', () => {
         bricks[i] = [];
         for (let j = 0; j < brick.column; j++) {
             bricks[i][j] = {
-                x: j * (brick.offSetLeft+  brick.width) + brick.offSetLeft,
+                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft,
                 y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+                status: true,
             }
 
             const brickDiv = document.createElement('div')
