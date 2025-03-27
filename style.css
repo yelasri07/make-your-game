@@ -39,8 +39,16 @@ body {
     position: absolute;
 }
 
+.bricks{
+    background-color: red;
+    width: max-content;
+    height: max-content;
+    position: relative;
+}
+
 .brick{
     background-color: var(--steel-blue);
     background-image: linear-gradient(145deg, var(--midnight-blue), var(--steel-blue));
     position: absolute;
+    border: 1px solid var(--pure-white);
 }

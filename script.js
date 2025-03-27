@@ -93,6 +93,8 @@ function createBall(container) {
 }
 
 function createBricks(container) {
+    const bricksDiv = document.createElement('div')
+    bricksDiv.className = 'bricks'
     for (let i = 0; i < brick.row; i++) {
         bricks[i] = [];
         for (let j = 0; j < brick.column; j++) {
@@ -101,14 +103,11 @@ function createBricks(container) {
                 y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
                 status: true,
             }
-
-            const brickDiv = document.createElement('div')
-            brickDiv.className = 'brick'
-
-            brickStyle(brickDiv, bricks[i][j])
-            container.append(brickDiv)
         }
     }
+
+    brickStyle(bricksDiv)
+    container.append(bricksDiv)
 }
 
 function movePaddle(paddleDiv) {
@@ -176,12 +175,24 @@ function ballStyle(ballDiv) {
 `
 }
 
-function brickStyle(brickDiv, obj) {
-    brickDiv.style.cssText = `
-    width: ${brick.width}px;
-    height: ${brick.height}px;
-    transform: translate(${obj.x}px, ${obj.y}px);
-`
+function brickStyle(bricksDiv) {
+    for (let i = 0; i < brick.row; i++) {
+        for (let j = 0; j < brick.column; j++) {
+            if (bricks[i][j].status) {
+                const brickDiv = document.createElement('div')
+                brickDiv.className = 'brick'
+                brickDiv.style.cssText = `
+                width: ${brick.width}px;
+                height: ${brick.height}px;
+                transform: translate(${bricks[i][j].x}px, ${bricks[i][j].y}px);
+            `
+
+            bricksDiv.append(brickDiv)
+            }
+
+           
+        }
+    }
 }
 
 function resetBall() {
