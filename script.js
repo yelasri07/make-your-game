@@ -16,14 +16,21 @@ const ball = {
     y: paddle.y - ballHeight * 1.2,
     width: ballWidth,
     height: ballHeight,
-    dx: 6 *  (Math.random() * 2 - 1),
+    dx: 6 * (Math.random() * 2 - 1),
     dy: -5,
 }
 
 const brick = {
-    width: 55,
+    width: 78,
     height: 20,
+    offSetLeft: 20,
+    offSetTop: 20,
+    marginTop: 30,
+    row: 3,
+    column: 8
 }
+
+const bricks = []
 
 let life = 3;
 let left = false
@@ -65,6 +72,22 @@ addEventListener('DOMContentLoaded', () => {
             animationId = undefined;
         }
     })
+
+    for (let i = 0; i < brick.row; i++) {
+        bricks[i] = [];
+        for (let j = 0; j < brick.column; j++) {
+            bricks[i][j] = {
+                x: j * (brick.offSetLeft+  brick.width) + brick.offSetLeft,
+                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+            }
+
+            const brickDiv = document.createElement('div')
+            brickDiv.className = 'brick'
+
+            brickStyle(brickDiv, bricks[i][j])
+            container.append(brickDiv)
+        }
+    }
 })
 
 function createPaddle(container) {
@@ -90,7 +113,7 @@ function movePaddle(paddleDiv) {
         movePaddle(paddleDiv)
     })
 
-    if (left && paddle.x > 0 && left) { 
+    if (left && paddle.x > 0 && left) {
         paddle.x -= 5
     }
 
@@ -150,9 +173,17 @@ function ballStyle(ballDiv) {
 `
 }
 
+function brickStyle(brickDiv, obj) {
+    brickDiv.style.cssText = `
+    width: ${brick.width}px;
+    height: ${brick.height}px;
+    transform: translate(${obj.x}px, ${obj.y}px);
+`
+}
+
 function resetBall() {
     ball.x = containerWidth / 2 - ballWidth / 2;
     ball.y = paddle.y - ballHeight * 1.2;
-    ball.dx = 6 *  (Math.random() * 2 - 1);
+    ball.dx = 6 * (Math.random() * 2 - 1);
     ball.dy = -5;
 }
