@@ -43,9 +43,9 @@ addEventListener('DOMContentLoaded', () => {
     const paddleDiv = createPaddle(container)
     const ballDiv = createBall(container)
     createBricks(container)
-    addEventListener('keydown', (event) => {
+    addEventListener('keydown', () => {
         if (event.key === ' ') {
-            moveBall(event, ballDiv)
+            moveBall(ballDiv)
         } else {
             if (event.key === 'ArrowLeft') {
                 right = false;
@@ -72,6 +72,7 @@ addEventListener('DOMContentLoaded', () => {
             animationId = undefined;
         }
     })
+
 })
 
 function createPaddle(container) {
@@ -92,8 +93,9 @@ function createBall(container) {
     return ballDiv
 }
 
+let bricksDiv;
 function createBricks(container) {
-    const bricksDiv = document.createElement('div')
+    bricksDiv = document.createElement('div')
     bricksDiv.className = 'bricks'
     for (let i = 0; i < brick.row; i++) {
         bricks[i] = [];
@@ -126,9 +128,9 @@ function movePaddle(paddleDiv) {
     paddleStyle(paddleDiv)
 }
 
-function moveBall(event, ballDiv) {
+function moveBall(ballDiv) {
     let reqAnId = requestAnimationFrame(() => {
-        moveBall(event, ballDiv)
+        moveBall(ballDiv)
     })
 
     if (ball.x + ball.width >= containerWidth || ball.x <= 0) {
@@ -157,10 +159,26 @@ function moveBall(event, ballDiv) {
     ball.y += ball.dy
 
     ballStyle(ballDiv)
+
+    delBrick()
 }
 
 function delBrick() {
-    // for (let)
+    for (let i = 0; i < brick.row; i++) {
+        for (let j = 0; j < brick.column; j++) {
+            let b = bricks[i][j]
+            if (b.status) {
+                if (ball.x + ball.width >= b.x && ball.x <= b.x + brick.width
+                    && ball.y + ball.height >= b.y && ball.y <= b.y + brick.height
+                ) {
+                    b.status = false
+                    ball.dy = - ball.dy
+                }
+            }
+        }
+    }
+
+    brickStyle(bricksDiv)
 }
 
 function paddleStyle(paddleDiv) {
@@ -180,6 +198,7 @@ function ballStyle(ballDiv) {
 }
 
 function brickStyle(bricksDiv) {
+    bricksDiv.innerHTML = ''
     for (let i = 0; i < brick.row; i++) {
         for (let j = 0; j < brick.column; j++) {
             if (bricks[i][j].status) {
@@ -191,10 +210,10 @@ function brickStyle(bricksDiv) {
                 transform: translate(${bricks[i][j].x}px, ${bricks[i][j].y}px);
             `
 
-            bricksDiv.append(brickDiv)
+                bricksDiv.append(brickDiv)
             }
 
-           
+
         }
     }
 }
