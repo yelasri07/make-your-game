@@ -101,8 +101,8 @@ function createBricks(container) {
         bricks[i] = [];
         for (let j = 0; j < brick.column; j++) {
             bricks[i][j] = {
-                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft,
-                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
+                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft + 1,
+                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop + 1,
                 status: true,
             }
         }
@@ -159,7 +159,7 @@ function moveBall(ballDiv) {
     ball.y += ball.dy
 
     ballStyle(ballDiv)
-
+    
     delBrick()
 }
 
@@ -168,6 +168,7 @@ function delBrick() {
         for (let j = 0; j < brick.column; j++) {
             let b = bricks[i][j]
             if (b.status) {
+                console.log(ball.y, b.y + brick.height)
                 if (ball.x + ball.width >= b.x && ball.x <= b.x + brick.width
                     && ball.y + ball.height >= b.y && ball.y <= b.y + brick.height
                 ) {
