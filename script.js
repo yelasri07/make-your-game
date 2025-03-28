@@ -101,8 +101,8 @@ function createBricks(container) {
         bricks[i] = [];
         for (let j = 0; j < brick.column; j++) {
             bricks[i][j] = {
-                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft + 1,
-                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop + 1,
+                x: j * (brick.offSetLeft + brick.width) + brick.offSetLeft,
+                y: i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop,
                 status: true,
             }
         }
