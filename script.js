@@ -43,7 +43,7 @@ addEventListener('DOMContentLoaded', () => {
     const paddleDiv = createPaddle(container)
     const ballDiv = createBall(container)
     createBricks(container)
-    addEventListener('keydown', () => {
+    addEventListener('keydown', (event) => {
         if (event.key === ' ') {
             moveBall(ballDiv)
         } else {
@@ -168,7 +168,6 @@ function delBrick() {
         for (let j = 0; j < brick.column; j++) {
             let b = bricks[i][j]
             if (b.status) {
-                console.log(ball.y, b.y + brick.height)
                 if (ball.x + ball.width >= b.x && ball.x <= b.x + brick.width
                     && ball.y + ball.height >= b.y && ball.y <= b.y + brick.height
                 ) {
