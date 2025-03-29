@@ -26,7 +26,7 @@ export const brick = {
     height: 20,
     offSetLeft: 20,
     offSetTop: 20,
-    marginTop: 30,
+    marginTop: 40,
     row: 3,
     column: 8,
 }
