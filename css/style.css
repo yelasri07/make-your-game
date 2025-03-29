@@ -25,6 +25,8 @@ body {
 .container {
     border: 2px solid var(--lavender-gray);
     position: relative;
+    height: 800px;
+    width: 800px;
 }
 
 .paddle {
