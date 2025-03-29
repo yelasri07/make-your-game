@@ -37,11 +37,11 @@ export function updateBallPosition(ballElement) {
 }
 
 export function createBall() {
-    const container = document.querySelector('.container')
+    const gameElement = document.querySelector('.game')
     const ballElement = document.createElement('div')
     ballElement.className = 'ball'
     updateBall(ballElement)
-    container.append(ballElement)
+    gameElement.append(ballElement)
 }
 
 function updateBall(ballElement) {

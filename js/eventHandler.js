@@ -1,11 +1,13 @@
 import { updatePaddlePosition, movementState } from './paddle.js';
 import { updateBallPosition } from './ball.js';
+import { gameStart } from './gameController.js';
 
 export function setupEventListeners() {
     const ballElement = document.querySelector('.ball')
     const paddleElement = document.querySelector('.paddle')
     addEventListener('keydown', (event) => {
         if (event.key === ' ') {
+            gameStart()
             updateBallPosition(ballElement)
         } else {
             if (event.key === 'ArrowLeft') {

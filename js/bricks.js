@@ -32,10 +32,10 @@ export function createBricks() {
         }
     }
 
-    const container = document.querySelector('.container')
+    const gameElement = document.querySelector('.game')
     const bricksElements = document.createElement('div')
     bricksElements.className = 'bricks'
-    container.append(bricksElements)
+    gameElement.append(bricksElements)
     updateBricks()
 }
 

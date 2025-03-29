@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     /* box-sizing: border-box; */
+    font-family: sans-serif;
 }
 
 :root {
@@ -23,10 +24,17 @@ body {
 }
 
 .container {
-    border: 2px solid var(--lavender-gray);
     position: relative;
     height: 800px;
     width: 800px;
+}
+
+.game{
+    border: 2px solid var(--lavender-gray);
+    width: 100%;
+    height: 100%;
+    opacity: .6;
+    position: relative;
 }
 
 .paddle {
@@ -41,16 +49,21 @@ body {
     position: absolute;
 }
 
-.bricks{
-    background-color: red;
-    width: max-content;
-    height: max-content;
-    position: relative;
-}
-
 .brick{
     background-color: var(--steel-blue);
     background-image: linear-gradient(145deg, var(--midnight-blue), var(--steel-blue));
     position: absolute;
     border: 1px solid var(--pure-white);
+}
+
+.start{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 30px;
+    letter-spacing: 8px;
+    width: 100%;
+    text-align: center;
+    opacity: 1;
 }

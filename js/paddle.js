@@ -23,11 +23,11 @@ export function updatePaddlePosition(paddleElement) {
 }
 
 export function createPaddle() {
-    const container = document.querySelector('.container')
+    const gameElement = document.querySelector('.game')
     const paddleElement = document.createElement('div')
     paddleElement.className = 'paddle'
     updatePaddle(paddleElement)
-    container.append(paddleElement)
+    gameElement.append(paddleElement)
 }
 
 function updatePaddle(paddleElement) {
