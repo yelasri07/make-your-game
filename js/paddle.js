@@ -28,8 +28,6 @@ export function createPaddle() {
     paddleElement.className = 'paddle'
     updatePaddle(paddleElement)
     container.append(paddleElement)
-
-    return paddleElement
 }
 
 function updatePaddle(paddleElement) {

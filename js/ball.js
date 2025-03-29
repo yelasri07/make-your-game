@@ -42,8 +42,6 @@ export function createBall() {
     ballElement.className = 'ball'
     updateBall(ballElement)
     container.append(ballElement)
-
-    return ballElement
 }
 
 function updateBall(ballElement) {
