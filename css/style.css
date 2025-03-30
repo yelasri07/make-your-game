@@ -67,3 +67,28 @@ body {
     text-align: center;
     opacity: 1;
 }
+
+.scoreBoard{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+.scoreBoard .timer{
+    margin-left: 20px;
+}
+
+.scoreBoard .lives{
+    margin-right: 20px;
+    
+}
+
+.scoreBoard .lives i{
+    background-color: #D84040;
+    padding: 5px;
+    border-radius: 50%;
+}
