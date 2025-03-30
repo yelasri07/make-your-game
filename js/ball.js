@@ -1,5 +1,6 @@
 import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight } from './config.js';
 import { breakBrick } from './bricks.js';
+import { scoreBoard, updateScoreBoard } from './scoreBoard.js';
 
 export function updateBallPosition(ballElement) {
     let reqAnId = requestAnimationFrame(() => {
@@ -12,7 +13,7 @@ export function updateBallPosition(ballElement) {
 
     if (ball.y <= 0) {
         ball.dy = -ball.dy
-    }
+    }   
 
     if (ball.y + ball.height >= paddle.y && ball.x + ball.width >= paddle.x && ball.x <= paddle.x + paddle.width) {
         let collidePoint = ball.x - (paddle.x + paddle.width / 2)
@@ -21,7 +22,8 @@ export function updateBallPosition(ballElement) {
         ball.dx = 6 * Math.sin(angle)
         ball.dy = -(6 * Math.cos(angle))
     } else if (ball.y + ball.height >= containerHeight) {
-        // life--
+        scoreBoard.lives--
+        updateScoreBoard()
         cancelAnimationFrame(reqAnId)
         resetBall()
         updateBall(ballElement)
