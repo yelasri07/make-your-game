@@ -4,3 +4,11 @@ export function gameStart() {
     gameElement.style.opacity = '1'
     startElement.style.display = 'none'
 }
+
+export function gameOver(win = true) {
+    if (win) {
+
+    } else {
+        console.log('you looossss')
+    }
+}
