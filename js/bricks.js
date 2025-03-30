@@ -1,4 +1,5 @@
 import { brick, ball } from './config.js'
+import { scoreBoard, updateScoreBoard } from './scoreBoard.js'
 
 const bricks = []
 
@@ -11,6 +12,8 @@ export function breakBrick() {
                     && ball.y + ball.height >= b.y && ball.y <= b.y + brick.height
                 ) {
                     b.status = false
+                    scoreBoard.score += 100
+                    updateScoreBoard()
                     ball.dy = - ball.dy
                 }
             }
