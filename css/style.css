@@ -105,10 +105,12 @@ body {
     justify-content: center;
     align-items: center;
     gap: 20px;
+    display: none;
 }
 
 .game-status{
     font-size: 2.5em;
+    letter-spacing: 3px;
 }
 
 .game-outcome{

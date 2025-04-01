@@ -3,7 +3,7 @@ import { breakBrick } from './bricks.js';
 import { scoreBoard, updateScoreBoard } from './scoreBoard.js';
 import { updatePaddle } from './paddle.js';
 
-let reqAnId
+export let reqAnId
 export function updateBallPosition(ballElement) {
     reqAnId = requestAnimationFrame(() => {
         updateBallPosition(ballElement)
