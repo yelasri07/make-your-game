@@ -1,4 +1,6 @@
 import { resetBall, reqAnId } from "./ball.js"
+import { scoreBoard } from "./config.js"
+import { updateScoreBoard } from "./scoreBoard.js"
 
 export function gameStart() {
     const gameElement = document.querySelector('.game')
@@ -20,6 +22,10 @@ export function gameOver(type) {
 export function gameRestart() {
     const gameResultMenu = document.querySelector('.game-result-menu')
     gameResultMenu.style.display = 'none'
+    scoreBoard.timer = '05:00'
+    scoreBoard.score = 0 
+    scoreBoard.lives = 3
+    updateScoreBoard()
     resetBall()
     gameStart()
 }
