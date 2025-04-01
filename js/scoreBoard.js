@@ -27,7 +27,6 @@ export function countDown() {
 
         scoreBoard.timer = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         updateScoreBoard();
-        console.log(scoreBoard.timer)
 
         if (seconds === 0) {
             if (minutes === 0) {
