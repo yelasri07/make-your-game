@@ -6,7 +6,7 @@ export const scoreBoard = {
     lives: 3
 }
 
-let x;
+export let x;
 
 export function updateScoreBoard() {
     const timer = document.querySelector('.timer')

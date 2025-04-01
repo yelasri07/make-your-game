@@ -1,13 +1,17 @@
 import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight, paddleHeight, paddleWidth } from './config.js';
 import { breakBrick } from './bricks.js';
-import { scoreBoard, updateScoreBoard } from './scoreBoard.js';
+import { scoreBoard, updateScoreBoard, x } from './scoreBoard.js';
 import { updatePaddle } from './paddle.js';
 
+export let isStarted = false
 export let reqAnId
+
 export function updateBallPosition(ballElement) {
     reqAnId = requestAnimationFrame(() => {
         updateBallPosition(ballElement)
     })
+
+    isStarted = true
 
 
     if (ball.x + ball.width >= containerWidth || ball.x <= 0) {
@@ -57,6 +61,7 @@ function updateBall(ballElement) {
 
 export function resetBall() {
     cancelAnimationFrame(reqAnId)
+    clearInterval(x)
     ball.x = containerWidth / 2 - ballWidth / 2;
     ball.y = paddle.y - ballHeight * 1.2;
     ball.dx = 6 * (Math.random() * 2 - 1);
@@ -67,4 +72,5 @@ export function resetBall() {
     const ballElement = document.querySelector('.ball')
     updatePaddle(paddleElement)
     updateBall(ballElement)
+    isStarted = false
 }

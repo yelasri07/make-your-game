@@ -1,6 +1,6 @@
 import { updatePaddlePosition, movementState } from './paddle.js';
-import { updateBallPosition } from './ball.js';
-import { gameRestart, gameStart, isStarted } from './gameController.js';
+import { updateBallPosition, isStarted } from './ball.js';
+import { gameRestart, gameStart } from './gameController.js';
 import { countDown } from './scoreBoard.js';
 
 export function setupEventListeners() {
@@ -9,12 +9,11 @@ export function setupEventListeners() {
     const restartButton = document.querySelector('.restart-button')
     addEventListener('keydown', (event) => {
         if (event.key === ' ') {
-            console.log(isStarted)
             if (!isStarted) {
                 gameStart()
                 countDown()
+                updateBallPosition(ballElement)
             }
-            updateBallPosition(ballElement)
         } else {
             if (event.key === 'ArrowLeft') {
                 movementState.right = false;
