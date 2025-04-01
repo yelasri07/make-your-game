@@ -10,13 +10,18 @@ export function updateBallPosition(ballElement) {
         updateBallPosition(ballElement)
     })
 
-    if (ball.x + ball.width >= containerWidth || ball.x <= 0) {
-        ball.dx = -ball.dx
+    if (ball.x + ball.width >= containerWidth) {
+        ball.dx = -Math.abs(ball.dx)
+    }
+
+    if (ball.x <= 0) {
+        ball.dx = Math.abs(ball.dx)
     }
 
     if (ball.y <= 0) {
         ball.dy = -ball.dy
-    }   
+
+    }
 
     if (ball.y + ball.height >= paddle.y && ball.x + ball.width >= paddle.x && ball.x <= paddle.x + paddle.width) {
         let collidePoint = ball.x - (paddle.x + paddle.width / 2)
