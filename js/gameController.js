@@ -1,5 +1,5 @@
 import { resetBall, reqAnId } from "./ball.js"
-import { scoreBoard } from "./config.js"
+import { ball, scoreBoard } from "./config.js"
 import { updateScoreBoard } from "./scoreBoard.js"
 
 export function gameStart() {
@@ -17,6 +17,7 @@ export function gameOver(type) {
     gameResultMenu.style.display = 'flex'
     gameElement.style.opacity = '.6'
     gameOutcome.textContent = `you ${type}`
+    ball.isStarted = true
 }
 
 export function gameRestart() {

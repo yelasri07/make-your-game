@@ -3,16 +3,12 @@ import { breakBrick } from './bricks.js';
 import { updateScoreBoard, x } from './scoreBoard.js';
 import { updatePaddle } from './paddle.js';
 
-export let isStarted = false
 export let reqAnId
 
 export function updateBallPosition(ballElement) {
     reqAnId = requestAnimationFrame(() => {
         updateBallPosition(ballElement)
     })
-
-    isStarted = true
-
 
     if (ball.x + ball.width >= containerWidth || ball.x <= 0) {
         ball.dx = -ball.dx
@@ -30,8 +26,8 @@ export function updateBallPosition(ballElement) {
         ball.dy = -(6 * Math.cos(angle))
     } else if (ball.y + ball.height >= containerHeight) {
         scoreBoard.lives--
-        updateScoreBoard()
         resetBall()
+        updateScoreBoard()
         return
     }
 
@@ -72,5 +68,5 @@ export function resetBall() {
     const ballElement = document.querySelector('.ball')
     updatePaddle(paddleElement)
     updateBall(ballElement)
-    isStarted = false
+    ball.isStarted = false
 }

@@ -19,6 +19,7 @@ export const ball = {
     height: ballHeight,
     dx: 6 * (Math.random() * 2 - 1),
     dy: -5,
+    isStarted : false,
 }
 
 export const brick = {
