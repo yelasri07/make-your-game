@@ -1,6 +1,7 @@
-import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight } from './config.js';
+import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight, paddleHeight, paddleWidth } from './config.js';
 import { breakBrick } from './bricks.js';
 import { scoreBoard, updateScoreBoard } from './scoreBoard.js';
+import { updatePaddle } from './paddle.js';
 
 export function updateBallPosition(ballElement) {
     let reqAnId = requestAnimationFrame(() => {
@@ -54,9 +55,13 @@ function updateBall(ballElement) {
 `
 }
 
-function resetBall() {
+export function resetBall() {
     ball.x = containerWidth / 2 - ballWidth / 2;
     ball.y = paddle.y - ballHeight * 1.2;
     ball.dx = 6 * (Math.random() * 2 - 1);
     ball.dy = -5;
+    paddle.x = containerHeight / 2 - paddleWidth / 2
+    paddle.y = containerHeight - paddleHeight - 5
+    const paddleElement = document.querySelector('.paddle')
+    updatePaddle(paddleElement)
 }

@@ -30,7 +30,7 @@ export function createPaddle() {
     gameElement.append(paddleElement)
 }
 
-function updatePaddle(paddleElement) {
+export function updatePaddle(paddleElement) {
     paddleElement.style.cssText = `
         width: ${paddle.width}px;
         height: ${paddle.height}px;
