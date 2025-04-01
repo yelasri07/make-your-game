@@ -1,4 +1,5 @@
 import { resetBall, reqAnId } from "./ball.js"
+import { createBricks } from "./bricks.js"
 import { ball, scoreBoard } from "./config.js"
 import { updateScoreBoard } from "./scoreBoard.js"
 
@@ -22,6 +23,8 @@ export function gameOver(type) {
 
 export function gameRestart() {
     const gameResultMenu = document.querySelector('.game-result-menu')
+    const bricksElement = document.querySelector('.bricks')
+    bricksElement.remove()
     gameResultMenu.style.display = 'none'
     scoreBoard.timer = '05:00'
     scoreBoard.score = 0 
@@ -29,4 +32,5 @@ export function gameRestart() {
     updateScoreBoard()
     resetBall()
     gameStart()
+    createBricks()
 }
