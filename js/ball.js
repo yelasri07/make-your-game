@@ -1,6 +1,6 @@
-import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight, paddleHeight, paddleWidth } from './config.js';
+import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight, paddleHeight, paddleWidth, scoreBoard } from './config.js';
 import { breakBrick } from './bricks.js';
-import { scoreBoard, updateScoreBoard, x } from './scoreBoard.js';
+import { updateScoreBoard, x } from './scoreBoard.js';
 import { updatePaddle } from './paddle.js';
 
 export let isStarted = false

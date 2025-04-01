@@ -1,5 +1,5 @@
-import { brick, ball } from './config.js'
-import { scoreBoard, updateScoreBoard } from './scoreBoard.js'
+import { brick, ball, scoreBoard } from './config.js'
+import { updateScoreBoard } from './scoreBoard.js'
 
 const bricks = []
 

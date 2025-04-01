@@ -1,10 +1,5 @@
 import { gameOver } from "./gameController.js"
-
-export const scoreBoard = {
-    timer: '10:00',
-    score: 0,
-    lives: 3
-}
+import { scoreBoard } from "./config.js";
 
 export let x;
 

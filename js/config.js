@@ -30,3 +30,9 @@ export const brick = {
     row: 3,
     column: 8,
 }
+
+export const scoreBoard = {
+    timer: '05:00',
+    score: 0,
+    lives: 3
+}
