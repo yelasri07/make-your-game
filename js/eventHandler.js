@@ -13,7 +13,7 @@ export function setupEventListeners() {
             ball.isStarted = true
             gameStart()
             countDown()
-            
+            updateBallPosition(ballElement)
         } else {
             if (event.key === 'ArrowLeft') {
                 movementState.right = false;
