@@ -68,14 +68,6 @@ body {
     display: block;
 }
 
-.hideStart{
-    display: none;
-}
-
-.opacityGame{
-    opacity: 1;
-}
-
 .scoreBoard{
     position: absolute;
     width: 100%;
