@@ -3,10 +3,12 @@ import { breakBrick } from './bricks.js';
 import { scoreBoard, updateScoreBoard } from './scoreBoard.js';
 import { updatePaddle } from './paddle.js';
 
+let reqAnId
 export function updateBallPosition(ballElement) {
-    let reqAnId = requestAnimationFrame(() => {
+    reqAnId = requestAnimationFrame(() => {
         updateBallPosition(ballElement)
     })
+
 
     if (ball.x + ball.width >= containerWidth || ball.x <= 0) {
         ball.dx = -ball.dx
@@ -25,9 +27,7 @@ export function updateBallPosition(ballElement) {
     } else if (ball.y + ball.height >= containerHeight) {
         scoreBoard.lives--
         updateScoreBoard()
-        cancelAnimationFrame(reqAnId)
         resetBall()
-        updateBall(ballElement)
         return
     }
 
@@ -56,6 +56,7 @@ function updateBall(ballElement) {
 }
 
 export function resetBall() {
+    cancelAnimationFrame(reqAnId)
     ball.x = containerWidth / 2 - ballWidth / 2;
     ball.y = paddle.y - ballHeight * 1.2;
     ball.dx = 6 * (Math.random() * 2 - 1);
@@ -63,5 +64,7 @@ export function resetBall() {
     paddle.x = containerHeight / 2 - paddleWidth / 2
     paddle.y = containerHeight - paddleHeight - 5
     const paddleElement = document.querySelector('.paddle')
+    const ballElement = document.querySelector('.ball')
     updatePaddle(paddleElement)
+    updateBall(ballElement)
 }

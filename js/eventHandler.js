@@ -1,6 +1,6 @@
 import { updatePaddlePosition, movementState } from './paddle.js';
 import { updateBallPosition, resetBall } from './ball.js';
-import { gameStart } from './gameController.js';
+import { gameRestart, gameStart } from './gameController.js';
 import { countDown } from './scoreBoard.js';
 
 export function setupEventListeners() {
@@ -40,10 +40,6 @@ export function setupEventListeners() {
     })
 
     restartButton.addEventListener('click', () => {
-        cancelAnimationFrame(movementState.animationId);
-        movementState.animationId = null
-        resetBall()
-        gameStart()
-        // removeEventListener(window)
+        gameRestart()
     })
 }
