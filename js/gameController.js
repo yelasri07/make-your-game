@@ -33,6 +33,8 @@ export function gameRestart() {
     scoreBoard.timer = '05:00'
     scoreBoard.score = 0
     scoreBoard.lives = 3
+    scoreBoard.minutes = 4
+    scoreBoard.seconds = 60
     updateScoreBoard()
     resetBall()
     createBricks()

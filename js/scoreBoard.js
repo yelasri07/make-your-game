@@ -18,22 +18,19 @@ export function updateScoreBoard() {
 }
 
 export function countDown() {
-    let minutes = 4;
-    let seconds = 60;
-
     x = setInterval(function () {
-        seconds--;
+        scoreBoard.seconds--;
 
-        scoreBoard.timer = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        scoreBoard.timer = `${String(scoreBoard.minutes).padStart(2, '0')}:${String(scoreBoard.seconds).padStart(2, '0')}`;
         updateScoreBoard();
 
-        if (seconds === 0) {
-            if (minutes === 0) {
+        if (scoreBoard.seconds === 0) {
+            if (scoreBoard.minutes === 0) {
                 clearInterval(x);
                 return;
             }
-            minutes--;
-            seconds = 60;
+            scoreBoard.minutes--;
+            scoreBoard.seconds = 60;
         }
 
     }, 1000);

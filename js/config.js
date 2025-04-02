@@ -35,5 +35,7 @@ export const brick = {
 export const scoreBoard = {
     timer: '05:00',
     score: 0,
-    lives: 3
+    lives: 3,
+    minutes: 4,
+    seconds: 60,
 }

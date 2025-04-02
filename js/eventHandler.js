@@ -53,5 +53,6 @@ export function setupEventListeners() {
     continueButton.addEventListener('click', () => {
         gameStart()
         updateBallPosition(ballElement)
+        countDown()
     })
 }
