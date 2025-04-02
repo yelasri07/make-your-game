@@ -56,7 +56,6 @@ export function setupEventListeners() {
     pauseBtn.addEventListener('click', gamePause)
 
     continueButton.addEventListener('click', () => {
-        console.log(('first'))
         if (!ball.isStarted) {
             ball.isStarted = true
             gameStart()
