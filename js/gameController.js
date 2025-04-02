@@ -1,7 +1,7 @@
 import { resetBall, reqAnId } from "./ball.js"
 import { createBricks } from "./bricks.js"
 import { ball, scoreBoard } from "./config.js"
-import { updateScoreBoard } from "./scoreBoard.js"
+import { updateScoreBoard, x } from "./scoreBoard.js"
 
 export function gameStart() {
     const gameElement = document.querySelector('.game')
@@ -15,6 +15,7 @@ export function gameOver(type) {
     const gameElement = document.querySelector('.game')
     const gameOutcome = document.querySelector('.game-outcome')
     cancelAnimationFrame(reqAnId)
+    clearInterval(x)
     gameResultMenu.style.display = 'flex'
     gameElement.style.opacity = '.6'
     gameOutcome.textContent = `you ${type}`

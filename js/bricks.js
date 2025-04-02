@@ -1,4 +1,5 @@
 import { brick, ball, scoreBoard } from './config.js'
+import { gameOver } from './gameController.js'
 import { updateScoreBoard } from './scoreBoard.js'
 
 const bricks = []
@@ -58,5 +59,9 @@ function updateBricks() {
                 bricksElements.append(brickElement)
             }
         }
+    }
+
+    if (bricksElements.childNodes.length === 0 ) {
+        gameOver('win')
     }
 }

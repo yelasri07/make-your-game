@@ -9,7 +9,6 @@ export function updateScoreBoard() {
     const lives = document.querySelector('.lives > span')
 
     if(scoreBoard.timer === '00:00' || scoreBoard.lives === 0) {
-        clearInterval(x)
         gameOver('lose')
     }
 
