@@ -65,7 +65,7 @@ body {
     letter-spacing: 8px;
     width: 100%;
     text-align: center;
-    display: block;
+    display: none;
 }
 
 .scoreBoard{
@@ -118,7 +118,7 @@ body {
     font-weight: 600;
 }
 
-.restart-button{
+.restart-button, .continue-button{
     padding: 10px 20px;
     border: none;
     outline: none;
@@ -130,7 +130,10 @@ body {
     color: var(--pure-white);
 }
 
-.pause-menu{
+.pause-btn {
+    border-radius: 50%;
+    background-color: var(--pure-white);
+    cursor: pointer;
     width: 20px;
     height: 20px;
     position: absolute;
@@ -139,10 +142,21 @@ body {
     z-index: 9999;
 }
 
-.pause-menu button {
-    border-radius: 50%;
-    background-color: var(--pure-white);
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
+.pause-menu{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.pause-menu > p{
+    font-size: 2.3em;
+    letter-spacing: 4px;
+    font-weight: 700;
 }

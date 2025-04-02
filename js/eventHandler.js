@@ -8,7 +8,8 @@ export function setupEventListeners() {
     const ballElement = document.querySelector('.ball')
     const paddleElement = document.querySelector('.paddle')
     const restartButton = document.querySelector('.restart-button')
-    const pauseMenu = document.querySelector('.pause-menu')
+    const pauseBtn = document.querySelector('.pause-btn')
+
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
             ball.isStarted = true
@@ -46,7 +47,7 @@ export function setupEventListeners() {
         gameRestart()
     })
 
-    pauseMenu.addEventListener('click', (e) => {
+    pauseBtn.addEventListener('click', (e) => {
         console.log(e.target)
     })
 }
