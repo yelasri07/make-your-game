@@ -6,6 +6,11 @@ import { updateScoreBoard, x } from "./scoreBoard.js"
 export function gameStart() {
     const gameElement = document.querySelector('.game')
     const startElement = document.querySelector('.start')
+    const pauseMenu = document.querySelector('.pause-menu')
+    const gameResultMenu = document.querySelector('.game-result-menu')
+
+    gameResultMenu.style.display = 'none'
+    pauseMenu.style.display = 'none'
     gameElement.style.opacity = '1'
     startElement.style.display = 'none'
 }
@@ -23,15 +28,22 @@ export function gameOver(type) {
 }
 
 export function gameRestart() {
-    const gameResultMenu = document.querySelector('.game-result-menu')
     const bricksElement = document.querySelector('.bricks')
     bricksElement.remove()
-    gameResultMenu.style.display = 'none'
     scoreBoard.timer = '05:00'
-    scoreBoard.score = 0 
+    scoreBoard.score = 0
     scoreBoard.lives = 3
     updateScoreBoard()
     resetBall()
-    gameStart()
     createBricks()
+    gameStart()
+}
+
+export function gamePause() {
+    const gameElement = document.querySelector('.game')
+    const pauseMenu = document.querySelector('.pause-menu')
+    cancelAnimationFrame(reqAnId)
+    clearInterval(x)
+    gameElement.style.opacity = '.6'
+    pauseMenu.style.display = 'flex'
 }

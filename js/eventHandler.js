@@ -1,13 +1,14 @@
 import { updatePaddlePosition, movementState } from './paddle.js';
 import { updateBallPosition } from './ball.js';
-import { gameRestart, gameStart } from './gameController.js';
+import { gamePause, gameRestart, gameStart } from './gameController.js';
 import { countDown } from './scoreBoard.js';
 import { ball } from './config.js';
 
 export function setupEventListeners() {
     const ballElement = document.querySelector('.ball')
     const paddleElement = document.querySelector('.paddle')
-    const restartButton = document.querySelector('.restart-button')
+    const restartButton = document.querySelectorAll('.restart-button')
+    const continueButton = document.querySelector('.continue-button')
     const pauseBtn = document.querySelector('.pause-btn')
 
     addEventListener('keydown', (event) => {
@@ -30,7 +31,7 @@ export function setupEventListeners() {
             if (!movementState.animationId) {
                 updatePaddlePosition(paddleElement);
             }
-        }  
+        }
     })
 
     addEventListener('keyup', (event) => {
@@ -43,11 +44,14 @@ export function setupEventListeners() {
         }
     })
 
-    restartButton.addEventListener('click', () => {
-        gameRestart()
+    restartButton.forEach((element) => {
+        element.addEventListener('click', gameRestart)
     })
 
-    pauseBtn.addEventListener('click', (e) => {
-        console.log(e.target)
+    pauseBtn.addEventListener('click', gamePause)
+
+    continueButton.addEventListener('click', () => {
+        gameStart()
+        updateBallPosition(ballElement)
     })
 }

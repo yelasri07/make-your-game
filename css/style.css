@@ -65,7 +65,7 @@ body {
     letter-spacing: 8px;
     width: 100%;
     text-align: center;
-    display: none;
+    display: block;
 }
 
 .scoreBoard{
@@ -153,6 +153,7 @@ body {
     gap: 30px;
     justify-content: center;
     align-items: center;
+    display: none;
 }
 
 .pause-menu > p{
