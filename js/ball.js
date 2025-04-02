@@ -24,10 +24,10 @@ export function updateBallPosition(ballElement) {
     }
 
     if (ball.y + ball.height >= paddle.y && ball.x + ball.width >= paddle.x && ball.x <= paddle.x + paddle.width) {
-        let collidePoint = ball.x - (paddle.x + paddle.width / 2)
-        collidePoint = collidePoint / (paddle.width / 2)
-        let angle = collidePoint * (Math.PI / 3)
-        ball.dx = 6 * Math.sin(angle)
+        let collidePoint = ball.x - (paddle.x + paddle.width / 2) // px value 
+        collidePoint = collidePoint / (paddle.width / 2) // -1 > value > 1
+        let angle = collidePoint * (Math.PI / 3) // angle b radian
+        ball.dx = 6 * Math.sin(angle) 
         ball.dy = -(6 * Math.cos(angle))
     } else if (ball.y + ball.height >= containerHeight) {
         scoreBoard.lives--
