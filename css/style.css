@@ -134,13 +134,14 @@ body {
     border-radius: 50%;
     background-color: var(--pure-white);
     cursor: pointer;
-    width: 20px;
-    height: 20px;
     position: absolute;
     left: 10px;
     bottom: 10px;
     z-index: 9999;
     display: none;
+    width: 40px;
+    height: 40px;
+    border: none;
 }
 
 .pause-menu{
