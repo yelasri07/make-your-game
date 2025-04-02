@@ -45,13 +45,14 @@ export function gamePause() {
     const gameElement = document.querySelector('.game')
     const pauseMenu = document.querySelector('.pause-menu')
     const ballElement = document.querySelector('.ball')
-    console.log(pauseMenu.style.display.length)
     cancelAnimationFrame(reqAnId)
     clearInterval(x)
     if (pauseMenu.style.display === 'none') {
         gameElement.style.opacity = '.6'
         pauseMenu.style.display = 'flex'
-    } else if (pauseMenu.style.display === 'flex') {
+        ball.isStarted = false
+    } else if (pauseMenu.style.display === 'flex' && !ball.isStarted) {
+        ball.isStarted = true
         gameStart()
         updateBallPosition(ballElement)
         countDown()

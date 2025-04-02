@@ -11,7 +11,7 @@ export function setupEventListeners() {
     const continueButton = document.querySelector('.continue-button')
     const pauseBtn = document.querySelector('.pause-btn')
 
-    addEventListener('keydown', (event) => { 
+    addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
             ball.isStarted = true
             pauseBtn.style.display = 'block'
@@ -56,8 +56,11 @@ export function setupEventListeners() {
     pauseBtn.addEventListener('click', gamePause)
 
     continueButton.addEventListener('click', () => {
-        gameStart()
-        updateBallPosition(ballElement)
-        countDown()
+        if (!ball.isStarted) {
+            ball.isStarted = true
+            gameStart()
+            updateBallPosition(ballElement)
+            countDown()
+        }
     })
 }
