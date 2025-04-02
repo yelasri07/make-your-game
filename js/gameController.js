@@ -45,9 +45,12 @@ export function gamePause() {
     const gameElement = document.querySelector('.game')
     const pauseMenu = document.querySelector('.pause-menu')
     const ballElement = document.querySelector('.ball')
+    const gameResultMenu = document.querySelector('.game-result-menu')
+
+    console.log(gameResultMenu.style.display)
     cancelAnimationFrame(reqAnId)
     clearInterval(x)
-    if (pauseMenu.style.display === 'none') {
+    if (pauseMenu.style.display === 'none' && gameResultMenu.style.display !== 'flex') {
         gameElement.style.opacity = '.6'
         pauseMenu.style.display = 'flex'
         ball.isStarted = false
