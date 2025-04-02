@@ -11,7 +11,7 @@ export function setupEventListeners() {
     const continueButton = document.querySelector('.continue-button')
     const pauseBtn = document.querySelector('.pause-btn')
 
-    addEventListener('keydown', (event) => {
+    addEventListener('keydown', (event) => { 
         if (event.key === ' ' && !ball.isStarted) {
             ball.isStarted = true
             pauseBtn.style.display = 'block'
@@ -32,6 +32,10 @@ export function setupEventListeners() {
             if (!movementState.animationId) {
                 updatePaddlePosition(paddleElement);
             }
+        }
+
+        if (event.key === 'Escape') {
+            gamePause()
         }
     })
 

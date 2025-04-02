@@ -1,7 +1,7 @@
-import { resetBall, reqAnId } from "./ball.js"
+import { resetBall, reqAnId , updateBallPosition} from "./ball.js"
 import { createBricks } from "./bricks.js"
 import { ball, scoreBoard } from "./config.js"
-import { updateScoreBoard, x } from "./scoreBoard.js"
+import { updateScoreBoard, x, countDown } from "./scoreBoard.js"
 
 export function gameStart() {
     const gameElement = document.querySelector('.game')
@@ -44,8 +44,16 @@ export function gameRestart() {
 export function gamePause() {
     const gameElement = document.querySelector('.game')
     const pauseMenu = document.querySelector('.pause-menu')
+    const ballElement = document.querySelector('.ball')
+    console.log(pauseMenu.style.display.length)
     cancelAnimationFrame(reqAnId)
     clearInterval(x)
-    gameElement.style.opacity = '.6'
-    pauseMenu.style.display = 'flex'
+    if (pauseMenu.style.display === 'none') {
+        gameElement.style.opacity = '.6'
+        pauseMenu.style.display = 'flex'
+    } else if (pauseMenu.style.display === 'flex') {
+        gameStart()
+        updateBallPosition(ballElement)
+        countDown()
+    }
 }
