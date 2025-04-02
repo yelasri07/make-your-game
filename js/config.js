@@ -29,7 +29,7 @@ export const brick = {
     offSetTop: 20,
     marginTop: 40,
     row: 1,
-    column: 1,
+    column: 8,
 }
 
 export const scoreBoard = {
