@@ -8,6 +8,7 @@ export function setupEventListeners() {
     const ballElement = document.querySelector('.ball')
     const paddleElement = document.querySelector('.paddle')
     const restartButton = document.querySelector('.restart-button')
+    const pauseMenu = document.querySelector('.pause-menu')
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
             ball.isStarted = true
@@ -28,7 +29,7 @@ export function setupEventListeners() {
             if (!movementState.animationId) {
                 updatePaddlePosition(paddleElement);
             }
-        }
+        }  
     })
 
     addEventListener('keyup', (event) => {
@@ -43,5 +44,9 @@ export function setupEventListeners() {
 
     restartButton.addEventListener('click', () => {
         gameRestart()
+    })
+
+    pauseMenu.addEventListener('click', (e) => {
+        console.log(e.target)
     })
 }
