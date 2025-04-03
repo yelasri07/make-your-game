@@ -1,7 +1,8 @@
-import { resetBall, reqAnId , updateBallPosition} from "./ball.js"
+import { resetBall, reqAnId, updateBallPosition } from "./ball.js"
 import { createBricks } from "./bricks.js"
 import { ball, scoreBoard } from "./config.js"
 import { updateScoreBoard, x, countDown } from "./scoreBoard.js"
+import { movementState } from "./paddle.js"
 
 export function gameStart() {
     const gameElement = document.querySelector('.game')
@@ -46,6 +47,8 @@ export function gamePause() {
     const pauseMenu = document.querySelector('.pause-menu')
     const ballElement = document.querySelector('.ball')
     const gameResultMenu = document.querySelector('.game-result-menu')
+    cancelAnimationFrame(movementState.animationId);
+    movementState.animationId = null;
     cancelAnimationFrame(reqAnId)
     clearInterval(x)
     if (pauseMenu.style.display === 'none' && gameResultMenu.style.display !== 'flex') {
