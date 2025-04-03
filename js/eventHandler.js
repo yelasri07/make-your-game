@@ -9,12 +9,10 @@ export function setupEventListeners() {
     const paddleElement = document.querySelector('.paddle')
     const restartButton = document.querySelectorAll('.restart-button')
     const continueButton = document.querySelector('.continue-button')
-    const pauseBtn = document.querySelector('.pause-btn')
 
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
             ball.isStarted = true
-            pauseBtn.style.display = 'block'
             gameStart()
             countDown()
             updateBallPosition(ballElement)
@@ -52,8 +50,6 @@ export function setupEventListeners() {
     restartButton.forEach((element) => {
         element.addEventListener('click', gameRestart)
     })
-
-    pauseBtn.addEventListener('click', gamePause)
 
     continueButton.addEventListener('click', () => {
         if (!ball.isStarted) {

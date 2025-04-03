@@ -8,7 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     createBall()
     createBricks()
     setupEventListeners()
+
+    
 });
+
+addEventListener('resize', () => {
+    console.log(innerWidth)
+})
 
 // just for test the ball
 // addEventListener('keydown', (e) => {

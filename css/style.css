@@ -130,20 +130,6 @@ body {
     color: var(--pure-white);
 }
 
-.pause-btn {
-    border-radius: 50%;
-    background-color: var(--pure-white);
-    cursor: pointer;
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    z-index: 9999;
-    display: none;
-    width: 40px;
-    height: 40px;
-    border: none;
-}
-
 .pause-menu{
     position: absolute;
     top: 50%;
