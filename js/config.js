@@ -1,4 +1,5 @@
 import { updateBricks } from "./bricks.js";
+import { updatePaddle } from "./paddle.js";
 
 export let containerWidth = 800;
 export const containerHeight = 800;
@@ -21,7 +22,7 @@ export const ball = {
     height: ballHeight,
     dx: 6 * (Math.random() * 2 - 1),
     dy: -5,
-    isStarted : false,
+    isStarted: false,
 }
 
 export const brick = {
@@ -44,7 +45,14 @@ export const scoreBoard = {
 
 addEventListener('resize', () => {
     const container = document.querySelector('.container').getBoundingClientRect()
+    const paddleElement = document.querySelector('.paddle')
     brick.width = ((container.width / 6) - 20) - 3
     containerWidth = container.width
     updateBricks()
+    paddle.x = containerWidth / 2 - paddleWidth / 2
+    paddle.y = containerHeight - paddleHeight - 5
+
+    updatePaddle(paddleElement)
+
+    console.log(paddle.x, paddle.y)
 })

@@ -45,7 +45,6 @@ export function createBricks() {
 
 export function updateBricks() {
     const bricksElements = document.querySelector('.bricks')
-    console.log(brick.width)
     bricksElements.innerHTML = ''
     for (let i = 0; i < brick.row; i++) {
         for (let j = 0; j < brick.column; j++) {
