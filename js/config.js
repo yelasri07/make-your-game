@@ -1,4 +1,6 @@
-export const containerWidth = 800;
+import { updateBricks } from "./bricks.js";
+
+export let containerWidth = 800;
 export const containerHeight = 800;
 export const paddleWidth = 160;
 export const paddleHeight = 20;
@@ -23,13 +25,13 @@ export const ball = {
 }
 
 export const brick = {
-    width: 78,
+    width: ((containerWidth / 6) - 20) - 3,
     height: 20,
     offSetLeft: 20,
     offSetTop: 20,
     marginTop: 40,
     row: 1,
-    column: 5,
+    column: 6,
 }
 
 export const scoreBoard = {
@@ -39,3 +41,10 @@ export const scoreBoard = {
     minutes: 4,
     seconds: 60,
 }
+
+addEventListener('resize', () => {
+    const container = document.querySelector('.container').getBoundingClientRect()
+    brick.width = ((container.width / 6) - 20) - 3
+    containerWidth = container.width
+    updateBricks()
+})

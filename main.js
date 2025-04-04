@@ -12,10 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
-addEventListener('resize', () => {
-    console.log(innerWidth)
-})
-
 // just for test the ball
 // addEventListener('keydown', (e) => {
 //     let ballElement = document.querySelector('.ball')

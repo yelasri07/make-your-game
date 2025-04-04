@@ -43,13 +43,16 @@ export function createBricks() {
     updateBricks()
 }
 
-function updateBricks() {
+export function updateBricks() {
     const bricksElements = document.querySelector('.bricks')
+    console.log(brick.width)
     bricksElements.innerHTML = ''
     for (let i = 0; i < brick.row; i++) {
         for (let j = 0; j < brick.column; j++) {
             if (bricks[i][j].status) {
                 const brickElement = document.createElement('div')
+                bricks[i][j].x = j * (brick.offSetLeft + brick.width) + brick.offSetLeft
+                bricks[i][j].y = i * (brick.offSetTop + brick.height) + brick.offSetTop + brick.marginTop
                 brickElement.className = 'brick'
                 brickElement.style.cssText = `
                 width: ${brick.width}px;
@@ -61,7 +64,7 @@ function updateBricks() {
         }
     }
 
-    if (bricksElements.childNodes.length === 0 ) {
+    if (bricksElements.childNodes.length === 0) {
         gameOver('win')
     }
 }
