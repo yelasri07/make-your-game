@@ -9,7 +9,8 @@ export const ballWidth = 20;
 export const ballHeight = 20;
 
 export const paddle = {
-    x: containerHeight / 2 - paddleWidth / 2,
+    x: ((containerWidth - paddleWidth) / containerWidth) * 100, // (    )
+    // x: (containerWidth * (1 - (paddleWidth / 100))) / 2, // (800 * (1 - (20 / 100))) / 2 => (800 * (1 - 0.2)) / 2 = > (640) / 2 => 320
     y: containerHeight - paddleHeight - 5,
     width: paddleWidth,
     height: paddleHeight,
@@ -49,10 +50,11 @@ addEventListener('resize', () => {
     brick.width = ((container.width / 6) - 20) - 3
     containerWidth = container.width
     updateBricks()
-    paddle.x = containerWidth / 2 - paddleWidth / 2
+    paddle.x = ((containerWidth - paddleWidth) / containerWidth) * 100
     paddle.y = containerHeight - paddleHeight - 5
+
 
     updatePaddle(paddleElement)
 
-    console.log(paddle.x, paddle.y)
+    // console.log(paddle.x, paddle.y)
 })
