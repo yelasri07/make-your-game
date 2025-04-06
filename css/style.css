@@ -41,6 +41,7 @@ body {
     background-color: var(--lavender-gray);
     position: absolute;
     border-radius: 10px;
+    /* left: 40%; */
 }
 
 .ball{
