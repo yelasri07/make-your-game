@@ -51,12 +51,16 @@ addEventListener('resize', () => {
     const paddlePercentWidth = (paddle.width / containerWidth) * 100;
     brick.width = ((container.width / 6) - 20) - 3;
     containerWidth = container.width;
-    updateBricks();
-
-    paddle.width = (paddlePercentWidth / 100) * containerWidth;
-
+    
     paddle.x = (paddlePercentX / 100) * containerWidth;
-
+    paddle.width = (paddlePercentWidth / 100) * containerWidth;
+    
+    
     updatePaddle(paddleElement)
-
+    updateBricks();
 })
+
+export function getContainerWidth() {
+        const container = document.querySelector('.container').getBoundingClientRect();
+        containerWidth = container.width;
+}
