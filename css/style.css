@@ -149,3 +149,15 @@ body {
     letter-spacing: 4px;
     font-weight: 700;
 }
+
+@media (max-height: 800px) {
+    .container{
+        height: 600px;
+    }
+}
+
+@media (max-height: 631px) {
+    .container{
+        height: 450px;
+    }
+}

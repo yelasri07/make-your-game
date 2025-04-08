@@ -26,7 +26,6 @@ export function createPaddle() {
     const gameElement = document.querySelector('.game')
     const paddleElement = document.createElement('div')
     paddleElement.className = 'paddle'
-    console.log(paddle.width)
     updatePaddle(paddleElement)
     gameElement.append(paddleElement)
 }
