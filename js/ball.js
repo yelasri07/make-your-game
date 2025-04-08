@@ -52,7 +52,7 @@ export function createBall() {
     gameElement.append(ballElement)
 }
 
-function updateBall(ballElement) {
+export function updateBall(ballElement) {
     ballElement.style.cssText = `
         width: ${ball.width}px;
         height: ${ball.height}px;

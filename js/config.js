@@ -1,5 +1,7 @@
+import { updateBall } from "./ball.js";
 import { updateBricks } from "./bricks.js";
 import { updatePaddle } from "./paddle.js";
+
 
 export let containerWidth = 800;
 export const containerHeight = 800;
@@ -46,16 +48,20 @@ export const scoreBoard = {
 addEventListener('resize', () => {
     const container = document.querySelector('.container').getBoundingClientRect();
     const paddleElement = document.querySelector('.paddle');
+    const ballElement = document.querySelector('.ball');
 
     const paddlePercentX = (paddle.x / containerWidth) * 100;
     const paddlePercentWidth = (paddle.width / containerWidth) * 100;
+    const ballPercentX = (ball.x / containerWidth) * 100
     brick.width = ((container.width / 6) - 20) - 3;
     containerWidth = container.width;
     
     paddle.x = (paddlePercentX / 100) * containerWidth;
     paddle.width = (paddlePercentWidth / 100) * containerWidth;
+    ball.x = (ballPercentX / 100) * containerWidth
     
     updatePaddle(paddleElement)
+    updateBall(ballElement)
     updateBricks();
 })
 
@@ -66,4 +72,6 @@ export function getContainerWidth() {
     const newPaddleWidth = (desiredPercentWidth / 100) * containerWidth;
     paddle.width = Math.min(newPaddleWidth, 160);
     paddle.x = containerWidth / 2 - paddle.width / 2; 
+    ball.x = containerWidth / 2 - ballWidth / 2
+    brick.width = ((container.width / 6) - 20) - 3;
 }
