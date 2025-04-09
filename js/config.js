@@ -61,29 +61,36 @@ addEventListener('resize', () => {
     containerWidth = containerBoundingWidth;
     containerHeight = containerBoundingHeight
 
-    
     paddle.x = (paddlePercentX / 100) * containerWidth;
     paddle.y = containerHeight - paddleHeight - 5
     paddle.width = (paddlePercentWidth / 100) * containerWidth;
     ball.x = (ballPercentX / 100) * containerWidth
     ball.width = (ballPercentWidth / 100) * containerWidth;
     ball.height = ball.width
-    
+    ball.y = paddle.y - ball.height * 1.2
+
     updatePaddle(paddleElement)
     updateBall(ballElement)
     updateBricks();
+
 })
 
 export function getContainerWidth() {
     const container = document.querySelector('.container').getBoundingClientRect();
     containerWidth = container.width;
     containerHeight = container.height
-    const desiredPercentWidth = 20;
-    const newPaddleWidth = (desiredPercentWidth / 100) * containerWidth;
+    const desiredPercentWidthPaddle = 20;
+    const desiredPercentWidthBall = 2.5;
+    const newPaddleWidth = (desiredPercentWidthPaddle / 100) * containerWidth;
     paddle.width = Math.min(newPaddleWidth, 160);
     paddle.x = containerWidth / 2 - paddle.width / 2;
     paddle.y = containerHeight - paddleHeight - 5
-    ball.x = containerWidth / 2 - ballWidth / 2
-    ball.y = paddle.y - ballHeight * 1.2
+
+    const newBallWidth = (desiredPercentWidthBall / 100) * containerWidth;
+    ball.width = Math.min(newBallWidth, 20);
+    ball.height = ball.width;
+    ball.x = containerWidth / 2 - ball.width / 2
+    ball.y = ball.y = paddle.y - ball.height * 1.2
+
     brick.width = ((container.width / 6) - 20) - 3;
 }
