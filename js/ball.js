@@ -1,7 +1,7 @@
 import { ball, paddle, containerWidth, containerHeight, ballWidth, ballHeight, paddleHeight, paddleWidth, scoreBoard } from './config.js';
 import { breakBrick } from './bricks.js';
 import { updateScoreBoard, x } from './scoreBoard.js';
-import { updatePaddle } from './paddle.js';
+import { movementState, updatePaddle } from './paddle.js';
 
 export let reqAnId
 
