@@ -63,15 +63,16 @@ export function resetBall() {
     cancelAnimationFrame(reqAnId)
     clearInterval(x)
     cancelAnimationFrame(movementState.animationId)
-    ball.x = containerWidth / 2 - ballWidth / 2;
-    ball.y = paddle.y - ballHeight * 1.2;
+    ball.x = containerWidth / 2 - ball.width / 2;
+    ball.y = paddle.y - ball.height * 1.2;
     ball.dx = 6 * (Math.random() * 2 - 1);
     ball.dy = -5;
-    paddle.x = containerWidth / 2 - paddleWidth / 2
+    paddle.x = containerWidth / 2 - paddle.width / 2
     paddle.y = containerHeight - paddleHeight - 5
     const paddleElement = document.querySelector('.paddle')
     const ballElement = document.querySelector('.ball')
     updatePaddle(paddleElement)
     updateBall(ballElement)
     ball.isStarted = false
+    ball.isReset = true
 }

@@ -13,6 +13,7 @@ export function setupEventListeners() {
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
             ball.isStarted = true
+            ball.isReset = false
             gameStart()
             countDown()
             updateBallPosition(ballElement)

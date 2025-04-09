@@ -57,6 +57,7 @@ export function gamePause() {
         ball.isStarted = false
     } else if (pauseMenu.style.display === 'flex' && !ball.isStarted) {
         ball.isStarted = true
+        ball.isReset = false
         gameStart()
         updateBallPosition(ballElement)
         countDown()

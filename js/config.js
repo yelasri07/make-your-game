@@ -25,6 +25,7 @@ export const ball = {
     dx: 6 * (Math.random() * 2 - 1),
     dy: -5,
     isStarted: false,
+    isReset: true
 }
 
 export const brick = {
@@ -67,7 +68,9 @@ addEventListener('resize', () => {
     ball.x = (ballPercentX / 100) * containerWidth
     ball.width = (ballPercentWidth / 100) * containerWidth;
     ball.height = ball.width
-    ball.y = paddle.y - ball.height * 1.2
+    if (ball.isReset) {
+        ball.y = paddle.y - ball.height * 1.2
+    }
 
     updatePaddle(paddleElement)
     updateBall(ballElement)
