@@ -41,6 +41,8 @@ export function updateBallPosition(ballElement) {
 
     updateBall(ballElement)
 
+    console.log(ball.x, ball.y)
+
     breakBrick()
 }
 

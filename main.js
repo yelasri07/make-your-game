@@ -2,7 +2,7 @@ import { createPaddle } from "./js/paddle.js"
 import { createBall, updateBallPosition } from "./js/ball.js"
 import { createBricks } from "./js/bricks.js"
 import { setupEventListeners } from "./js/eventHandler.js"
-import { getContainerWidth } from "./js/config.js";
+import { getContainerWidth, ball } from "./js/config.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     getContainerWidth()
@@ -13,22 +13,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // just for test the ball
-// addEventListener('keydown', (e) => {
-//     let ballElement = document.querySelector('.ball')
-//     if (e.key === 'z') {
-//         ball.y -= 5
-//     } 
-//     if (e.key === 's') {
-//         ball.y += 5
-//     } 
-//     if (e.key === 'd') {
-//         ball.x += 5
-//     } 
-//     if (e.key === 'q') {
-//         ball.x -= 5
-//     } 
+addEventListener('keydown', (e) => {
+    let ballElement = document.querySelector('.ball')
+    if (e.key === 'z') {
+        ball.y -= 5
+    } 
+    if (e.key === 's') {
+        ball.y += 5
+    } 
+    if (e.key === 'd') {
+        ball.x += 5
+    } 
+    if (e.key === 'q') {
+        ball.x -= 5
+    } 
     
-//     ballElement.style.cssText += `
-//     transform: translate(${ball.x}px, ${ball.y}px);
-//     `
-// })
+    ballElement.style.cssText += `
+    transform: translate(${ball.x}px, ${ball.y}px);
+    `
+})
