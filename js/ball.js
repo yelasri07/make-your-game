@@ -53,7 +53,7 @@ export function createBall() {
 }
 
 export function updateBall(ballElement) {
-    ballElement.style.cssText = `
+    ballElement.style.cssText = /*style*/`
         width: ${ball.width}px;
         height: ${ball.height}px;
         transform: translate(${ball.x}px, ${ball.y}px);

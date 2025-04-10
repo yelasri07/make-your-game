@@ -31,7 +31,7 @@ export function createPaddle() {
 }
 
 export function updatePaddle(paddleElement) {
-    paddleElement.style.cssText = `
+    paddleElement.style.cssText = /*style*/`
         width: ${paddle.width}px;
         height: ${paddle.height}px;
         transform: translate(${paddle.x}px, ${paddle.y}px);
