@@ -75,8 +75,6 @@ addEventListener('resize', () => {
         ball.y = paddle.y - ball.height * 1.2
     }
 
-
-    console.log(paddle.y)
     updatePaddle(paddleElement)
     updateBall(ballElement)
     updateBricks()
