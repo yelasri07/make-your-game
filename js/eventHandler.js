@@ -28,7 +28,7 @@ export function setupEventListeners() {
                 movementState.right = true;
             }
 
-            if (!movementState.animationId) {
+            if (!movementState.paddleAnimationId) {
                 updatePaddlePosition(paddleElement);
             }
         }
@@ -43,8 +43,8 @@ export function setupEventListeners() {
         if (event.key === 'ArrowRight') movementState.right = false;
 
         if (!movementState.left && !movementState.right) {
-            cancelAnimationFrame(movementState.animationId);
-            movementState.animationId = null;
+            cancelAnimationFrame(movementState.paddleAnimationId);
+            movementState.paddleAnimationId = null;
         }
     })
 

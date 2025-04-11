@@ -3,11 +3,11 @@ import { paddle, containerWidth } from './config.js'
 export const movementState = {
     left: false,
     right: false,
-    animationId: null
+    paddleAnimationId: null
 }
 
 export function updatePaddlePosition(paddleElement) {
-    movementState.animationId = requestAnimationFrame(() => {
+    movementState.paddleAnimationId = requestAnimationFrame(() => {
         updatePaddlePosition(paddleElement)
     })
 

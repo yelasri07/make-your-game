@@ -3,10 +3,10 @@ import { breakBrick } from './bricks.js';
 import { updateScoreBoard, x } from './scoreBoard.js';
 import { movementState, updatePaddle } from './paddle.js';
 
-export let reqAnId
+export let ballAnimationId
 
 export function updateBallPosition(ballElement) {
-    reqAnId = requestAnimationFrame(() => {
+    ballAnimationId = requestAnimationFrame(() => {
         updateBallPosition(ballElement)
     })
 
@@ -61,8 +61,8 @@ export function updateBall(ballElement) {
 }
 
 export function resetBall() {
-    cancelAnimationFrame(reqAnId)
-    cancelAnimationFrame(movementState.animationId)
+    cancelAnimationFrame(ballAnimationId)
+    cancelAnimationFrame(movementState.paddleAnimationId)
     clearInterval(x)
     ball.x = containerWidth / 2 - ball.width / 2;
     ball.y = paddle.y - ball.height * 1.2;

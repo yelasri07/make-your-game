@@ -1,4 +1,4 @@
-import { resetBall, reqAnId, updateBallPosition } from "./ball.js"
+import { resetBall, ballAnimationId, updateBallPosition } from "./ball.js"
 import { createBricks } from "./bricks.js"
 import { ball, scoreBoard } from "./config.js"
 import { updateScoreBoard, x, countDown } from "./scoreBoard.js"
@@ -20,7 +20,7 @@ export function gameOver(type) {
     const gameResultMenu = document.querySelector('.game-result-menu')
     const gameElement = document.querySelector('.game')
     const gameOutcome = document.querySelector('.game-outcome')
-    cancelAnimationFrame(reqAnId)
+    cancelAnimationFrame(ballAnimationId)
     clearInterval(x)
     gameResultMenu.style.display = 'flex'
     gameElement.style.opacity = '.6'
@@ -47,9 +47,9 @@ export function gamePause() {
     const pauseMenu = document.querySelector('.pause-menu')
     const ballElement = document.querySelector('.ball')
     const gameResultMenu = document.querySelector('.game-result-menu')
-    cancelAnimationFrame(movementState.animationId);
-    movementState.animationId = null;
-    cancelAnimationFrame(reqAnId)
+    cancelAnimationFrame(movementState.paddleAnimationId);
+    movementState.paddleAnimationId = null;
+    cancelAnimationFrame(ballAnimationId)
     clearInterval(x)
     if (pauseMenu.style.display === 'none' && gameResultMenu.style.display !== 'flex') {
         gameElement.style.opacity = '.6'
