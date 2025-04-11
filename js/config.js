@@ -39,10 +39,10 @@ export const brick = {
 }
 
 export const scoreBoard = {
-    timer: '05:00',
+    timer: '03:00',
     score: 0,
     lives: 3,
-    minutes: 4,
+    minutes: 2,
     seconds: 60,
 }
 

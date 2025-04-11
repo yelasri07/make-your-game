@@ -84,7 +84,6 @@ body {
 
 .scoreBoard .lives{
     margin-right: 20px;
-    
 }
 
 .scoreBoard .lives i{
@@ -159,5 +158,16 @@ body {
 @media (max-height: 631px) {
     .container{
         height: 450px;
+    }
+}
+
+@media (max-width: 485px) {
+    .pause-menu {
+        gap: 10px;
+    }
+    .pause-menu > div{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
     }
 }

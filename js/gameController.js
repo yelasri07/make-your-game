@@ -31,10 +31,10 @@ export function gameOver(type) {
 export function gameRestart() {
     const bricksElement = document.querySelector('.bricks')
     bricksElement.remove()
-    scoreBoard.timer = '05:00'
+    scoreBoard.timer = '03:00'
     scoreBoard.score = 0
     scoreBoard.lives = 3
-    scoreBoard.minutes = 4
+    scoreBoard.minutes = 2
     scoreBoard.seconds = 60
     updateScoreBoard()
     resetBall()
