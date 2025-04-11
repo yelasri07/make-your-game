@@ -1,6 +1,5 @@
 import { gameOver } from "./gameController.js"
 import { scoreBoard } from "./config.js";
-import { ballAnimationId } from "./ball.js";
 
 export let x;
 
