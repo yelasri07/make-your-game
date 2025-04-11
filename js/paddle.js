@@ -1,4 +1,4 @@
-import {paddle, containerWidth} from './config.js'
+import { paddle, containerWidth } from './config.js'
 
 export const movementState = {
     left: false,
@@ -18,6 +18,15 @@ export function updatePaddlePosition(paddleElement) {
     if (movementState.right && paddle.x + paddle.width < containerWidth) {
         paddle.x += 5
     }
+
+    if (paddle.x <= 0) {
+        paddle.x = 0
+    }
+
+    if (paddle.x + paddle.width >= containerWidth) {
+        paddle.x = containerWidth - paddle.width
+    }
+
 
     updatePaddle(paddleElement)
 }
