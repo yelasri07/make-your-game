@@ -151,13 +151,7 @@ body {
 
 @media (max-height: 800px) {
     .container{
-        height: 600px;
-    }
-}
-
-@media (max-height: 631px) {
-    .container{
-        height: 450px;
+        height: 95vh;
     }
 }
 
