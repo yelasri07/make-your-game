@@ -1,5 +1,6 @@
 import { gameOver } from "./gameController.js"
 import { scoreBoard } from "./config.js";
+import { ballAnimationId } from "./ball.js";
 
 export let x;
 
@@ -8,7 +9,7 @@ export function updateScoreBoard() {
     const score = document.querySelector('.score > span')
     const lives = document.querySelector('.lives > span')
 
-    if(scoreBoard.timer === '00:00' || scoreBoard.lives === 0) {
+    if (scoreBoard.timer === '00:00' || scoreBoard.lives === 0) {
         gameOver('lose')
     }
 
@@ -19,19 +20,23 @@ export function updateScoreBoard() {
 
 export function countDown() {
     x = setInterval(function () {
-        scoreBoard.seconds--;
+        scoreBoard.ms--
+        if (scoreBoard.ms === 0) {
+            scoreBoard.ms = 10
+            scoreBoard.seconds--;
 
-        scoreBoard.timer = `${String(scoreBoard.minutes).padStart(2, '0')}:${String(scoreBoard.seconds).padStart(2, '0')}`;
-        updateScoreBoard();
+            scoreBoard.timer = `${String(scoreBoard.minutes).padStart(2, '0')}:${String(scoreBoard.seconds).padStart(2, '0')}`;
+            updateScoreBoard();
 
-        if (scoreBoard.seconds === 0) {
-            if (scoreBoard.minutes === 0) {
-                clearInterval(x);
-                return;
+            if (scoreBoard.seconds === 0) {
+                if (scoreBoard.minutes === 0) {
+                    clearInterval(x);
+                    return;
+                }
+                scoreBoard.minutes--;
+                scoreBoard.seconds = 60;
             }
-            scoreBoard.minutes--;
-            scoreBoard.seconds = 60;
         }
 
-    }, 1000);
+    }, 100);
 }

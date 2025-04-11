@@ -44,6 +44,7 @@ export const scoreBoard = {
     lives: 3,
     minutes: 2,
     seconds: 60,
+    ms: 10,
 }
 
 addEventListener('resize', () => {
