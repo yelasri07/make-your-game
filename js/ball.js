@@ -69,7 +69,7 @@ export function resetBall() {
     ball.dx = 6 * (Math.random() * 2 - 1);
     ball.dy = -5;
     paddle.x = containerWidth / 2 - paddle.width / 2
-    paddle.y = containerHeight - paddleHeight - 5
+    paddle.y = containerHeight - paddle.height - 5
     const paddleElement = document.querySelector('.paddle')
     const ballElement = document.querySelector('.ball')
     updatePaddle(paddleElement)
