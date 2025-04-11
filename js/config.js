@@ -85,12 +85,16 @@ export function getContainerWidth() {
     containerWidth = container.width;
     containerHeight = container.height
     const desiredPercentWidthPaddle = 20; 
+    const desiredPercentHeightPaddle = 2.5
     const desiredPercentWidthBall = 2.5;
  
     const newPaddleWidth = (desiredPercentWidthPaddle / 100) * containerWidth;
+    const newPaddmeHeight = (desiredPercentHeightPaddle / 100) * containerWidth
     paddle.width = Math.min(newPaddleWidth, 160);
+    paddle.height = Math.min(newPaddmeHeight, 20);
+    
     paddle.x = containerWidth / 2 - paddle.width / 2;
-    paddle.y = containerHeight - paddleHeight - 5
+    paddle.y = containerHeight - paddle.height - 5
 
     const newBallWidth = (desiredPercentWidthBall / 100) * containerWidth;
     ball.width = Math.min(newBallWidth, 20);
