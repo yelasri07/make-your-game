@@ -4,7 +4,7 @@ import { ball, scoreBoard } from "./config.js"
 import { updateScoreBoard, x, countDown } from "./scoreBoard.js"
 import { movementState } from "./paddle.js"
 
-export function gameStart() {
+export function gameStart() {    
     const gameElement = document.querySelector('.game')
     const startElement = document.querySelector('.start')
     const pauseMenu = document.querySelector('.pause-menu')
@@ -14,9 +14,10 @@ export function gameStart() {
     pauseMenu.style.display = 'none'
     gameElement.style.opacity = '1'
     startElement.style.display = 'none'
+    
 }
 
-export function gameOver(type) {
+export function gameOver(type) {    
     const gameResultMenu = document.querySelector('.game-result-menu')
     const gameElement = document.querySelector('.game')
     const gameOutcome = document.querySelector('.game-outcome')
@@ -52,7 +53,7 @@ export function gamePause() {
     movementState.paddleAnimationId = null;
     cancelAnimationFrame(ballAnimationId)
     clearInterval(x)
-    if (pauseMenu.style.display === 'none' && gameResultMenu.style.display !== 'flex') {
+    if (pauseMenu.style.display === 'none' && gameResultMenu.style.display !== 'flex') {        
         gameElement.style.opacity = '.6'
         pauseMenu.style.display = 'flex'
         ball.isStarted = false

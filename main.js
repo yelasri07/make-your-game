@@ -4,7 +4,7 @@ import { createBricks } from "./js/bricks.js"
 import { setupEventListeners } from "./js/eventHandler.js"
 import { getContainerWidth } from "./js/config.js";
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {    
     getContainerWidth()
     createPaddle()
     createBall()
