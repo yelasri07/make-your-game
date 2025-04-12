@@ -1,5 +1,6 @@
 import { gameOver } from "./gameController.js"
 import { scoreBoard } from "./config.js";
+import { LifeLost } from "./sounds.js";
 
 export let x;
 
@@ -9,6 +10,7 @@ export function updateScoreBoard() {
     const lives = document.querySelector('.lives > span')
 
     if (scoreBoard.timer === '00:00' || scoreBoard.lives === 0) {
+        LifeLost()
         gameOver('lose')
     }
 
