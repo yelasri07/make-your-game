@@ -5,6 +5,7 @@ import { LifeLost } from "./sounds.js";
 export let x;
 
 export function updateScoreBoard() {
+    
     const timer = document.querySelector('.timer')
     const score = document.querySelector('.score > span')
     const lives = document.querySelector('.lives > span')
