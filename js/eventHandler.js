@@ -9,6 +9,8 @@ export function setupEventListeners() {
     const paddleElement = document.querySelector('.paddle')
     const restartButton = document.querySelectorAll('.restart-button')
     const continueButton = document.querySelector('.continue-button')
+    const pauseMenu = document.querySelector('.pause-menu')
+    const gameResultMenu = document.querySelector('.game-result-menu')
 
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
@@ -35,6 +37,12 @@ export function setupEventListeners() {
 
         if (event.key === 'Escape') {
             gamePause()
+        }
+
+        if (event.key === 'r') {
+            if (pauseMenu.style.display === 'flex' || gameResultMenu.style.display === 'flex') {
+                gameRestart()
+            }
         }
     })
 
