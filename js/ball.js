@@ -33,8 +33,9 @@ export function updateBallPosition(ballElement) {
   }
 
   if (ball.y + ball.height >= containerHeight) {
-    LifeLost();
     scoreBoard.lives--;
+    scoreBoard.lives !== 0 ? LifeLost() : "";
+
     resetBall();
     updateScoreBoard();
     return;

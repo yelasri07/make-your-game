@@ -19,3 +19,7 @@ export function Wall() {
   let audio = new Audio("../sounds/wall.mp3");
   audio.play();
 }
+export function GameOver() {
+  let audio = new Audio("../sounds/gameover.mp3");
+  audio.play();
+}
