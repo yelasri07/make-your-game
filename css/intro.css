@@ -14,9 +14,8 @@
 }
 .intro {
   position: absolute;
-  width: 100%;
   height: 100%;
-  background-color: var(--dark-blue);
+  background-color: #1b1a5562;
   z-index: 1;
   backdrop-filter: blur(8px);
   padding: 7px 14px;
@@ -35,7 +34,7 @@ h2 {
   line-height: 25px;
   font-size: 1.1rem;
   color: var(--pure-white);
-  font-weight: 100;
+  font-weight: bold;
   text-align: justify;
 }
 .content div {
@@ -44,6 +43,7 @@ h2 {
 }
 .content div img {
   width: 40%;
+  border: 4px solid var(--steel-blue);
   border-radius: 10px;
   margin-top: 10px;
 }
@@ -58,5 +58,32 @@ h2 {
   }
   to {
     opacity: 1;
+  }
+}
+@media screen and (max-width: 768px) {
+  .content h1,
+  .content h2 {
+    font-size: 1.5rem;
+  }
+
+  .content p {
+    font-size: 1rem;
+    text-align: left;
+    line-height: 22px;
+  }
+  .start{
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .content h1,
+  .content h2 {
+    font-size: 1.2rem;
+  }
+
+  .content p {
+    font-size: 0.95rem;
+    line-height: 20px;
   }
 }
