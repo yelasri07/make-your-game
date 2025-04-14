@@ -1,46 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>make your game</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/style.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/intro.css" />
     <script type="module" src="main.js"></script>
-</head>
+  </head>
 
-<body>
-
-
+  <body>
     <div class="container">
-        <div class="intro">
+      <div class="intro">
+        <div class="content">
+          <h1>👋 Hello, Soldier.</h1>
+          <p>
+            🪖 If you want to join the elite unit of Moroccan snipers 🇲🇦, you
+            must prove your precision. 🎯 Your mission: break all the bricks
+            with accuracy, without losing your three lives ❤️❤️❤️. 🚫 This is
+            not a game. It’s a test. Only the best become HOGs – Hunters of
+            Gunmen 🐗. 🔫 One shot. One kill. One chance.
+          </p>
+          <h2>🏆 Are you ready to become a legend?</h2>
+          <div>
+            <img src="images/Snipper-men.png" alt="" />
+            <img src="images/soldier.png" alt="" />
+          </div>
+        </div>
         <p class="start">Press Space to start</p>
-        </div>
-        <div class="scoreBoard">
-            <p class="timer">03:00</p>
-            <p class="score">xp: <span>0</span></p>
-            <p class="lives"><i class="fa-regular fa-heart"></i> <span>3</span></p>
-        </div>
-        <div class="game-result-menu">
-            <p class="game-status">Game Over</p>
-            <p class="game-outcome">Win!</p>
-            <button class="restart-button">Restart</button>
-        </div>
-        <div class="pause-menu">
-            <p>Pause</p>
-            <div>
-                <button class="restart-button">Restart</button>
-                <button class="continue-button">Continue</button>
-            </div>
-        </div>
-        <div class="game">
+      </div>
 
+      <div class="scoreBoard">
+        <p class="timer">03:00</p>
+        <p class="score">xp: <span>0</span></p>
+        <p class="lives"><i class="fa-regular fa-heart"></i> <span>3</span></p>
+      </div>
+      <div class="game-result-menu">
+        <p class="game-status">Game Over</p>
+        <p class="game-outcome">Win!</p>
+        <button class="restart-button">Restart</button>
+      </div>
+      <div class="pause-menu">
+        <p>Pause</p>
+        <div>
+          <button class="restart-button">Restart</button>
+          <button class="continue-button">Continue</button>
         </div>
+      </div>
+      <div class="game"></div>
     </div>
-
-</body>
-
+  </body>
 </html>
