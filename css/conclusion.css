@@ -37,3 +37,16 @@
 .victory > img:hover {
     filter: grayscale(20%);
 }
+
+.victory span{
+    color: var(--lavender-gray);
+}
+
+@media (max-width:420px) {
+    .victory {
+        width: 90%;
+    }
+    .victory > img{
+        width: 100%;
+    }
+}

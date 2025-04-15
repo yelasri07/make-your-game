@@ -27,7 +27,7 @@ export function gameOver(type) {
     gameElement.style.opacity = '.6'
     if (type === 'win') {
         victory.innerHTML = /*html*/`
-        <h3>🫡 Mission accomplished, Soldier!</h3>
+        <h3>🫡 Mission accomplished, <span>Soldier!</span></h3>
         <p>🎯 You’ve shattered every brick with sniper precision.
             ❤️ You kept all your lives safe — not a single mistake.
             🇲🇦 The Moroccan snipers salute you.
@@ -38,7 +38,7 @@ export function gameOver(type) {
     `
     } else {
         victory.innerHTML = /*html*/`
-        <h3>☠️ Mission failed, Soldier...</h3>
+        <h3>☠️ Mission failed, <span>Soldier...</span></h3>
         <p>💔 You lost your lives before the job was done.
         Precision requires discipline, and today... you fell short.
         🔄 But a real sniper never gives up.
