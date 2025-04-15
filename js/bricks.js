@@ -1,9 +1,12 @@
 import { brick, ball, scoreBoard } from "./config.js";
-import { gameOver } from "./gameController.js";
-import { updateScoreBoard } from "./scoreBoard.js";
+import { gameOver, gamePause } from "./gameController.js";
+import { updateScoreBoard, x } from "./scoreBoard.js";
 import { BrickHit, Win } from "./sounds.js";
+import { movementState } from "./paddle.js";
+import { ballAnimationId } from "./ball.js";
 
 const bricks = [];
+let scoreDev;
 
 export function breakBrick() {
   for (let i = 0; i < brick.row; i++) {
@@ -16,11 +19,20 @@ export function breakBrick() {
           ball.y + ball.height >= b.y &&
           ball.y <= b.y + brick.height
         ) {
-            BrickHit()
+          BrickHit()
           let brickElement = document.getElementById(b.id);
           b.status = false;
           scoreBoard.score += 100;
           updateScoreBoard();
+          if (scoreBoard.score === scoreDev) {
+            let devlo = document.querySelector('.devlo')
+            devlo.style.display = 'flex'
+            cancelAnimationFrame(movementState.paddleAnimationId);
+            movementState.paddleAnimationId = null;
+            cancelAnimationFrame(ballAnimationId)
+            clearInterval(x)
+            ball.isStarted = false
+          }
           ball.dy = -ball.dy;
           brickElement.remove();
         }
@@ -38,6 +50,9 @@ export function breakBrick() {
 
 export function createBricks() {
   const bricksElements = document.createElement("div");
+  // scoreDev = (brick.row * brick.column) / 2 * 100
+  scoreDev = 200
+
   bricksElements.className = "bricks";
   let idIncrement = 0;
 
