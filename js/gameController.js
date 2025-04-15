@@ -9,10 +9,12 @@ export function gameStart() {
     const startElement = document.querySelector('.start')
     const pauseMenu = document.querySelector('.pause-menu')
     const gameResultMenu = document.querySelector('.game-result-menu')
+    const intro = document.querySelector(".intro");
 
     gameResultMenu.style.display = 'none'
     pauseMenu.style.display = 'none'
     gameElement.style.opacity = '1'
+    intro.style.display = 'none';
     startElement.style.display = 'none'
 
 }
