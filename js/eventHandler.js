@@ -1,5 +1,5 @@
 import { updatePaddlePosition, movementState } from './paddle.js';
-import { updateBallPosition } from './ball.js';
+import { ballAnimationId, updateBallPosition } from './ball.js';
 import { gamePause, gameRestart, gameStart } from './gameController.js';
 import { countDown } from './scoreBoard.js';
 import { ball } from './config.js';
@@ -14,6 +14,9 @@ export function setupEventListeners() {
 
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
+            gameResultMenu.style.display = 'none'
+            pauseMenu.style.display = 'none'
+
             ball.isStarted = true
             ball.isReset = false
             gameStart()
@@ -35,7 +38,7 @@ export function setupEventListeners() {
             }
         }
 
-        if (event.key === 'Escape') {
+        if (event.key === 'Escape' && ballAnimationId) {
             gamePause()
         }
 
@@ -63,6 +66,8 @@ export function setupEventListeners() {
     continueButton.addEventListener('click', () => {
         if (!ball.isStarted) {
             ball.isStarted = true
+            gameResultMenu.style.display = 'none'
+            pauseMenu.style.display = 'none'
             gameStart()
             updateBallPosition(ballElement)
             countDown()

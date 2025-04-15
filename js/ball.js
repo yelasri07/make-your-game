@@ -77,6 +77,7 @@ export function updateBall(ballElement) {
 
 export function resetBall() {
   cancelAnimationFrame(ballAnimationId);
+  ballAnimationId = null
   cancelAnimationFrame(movementState.paddleAnimationId);
   clearInterval(x);
   ball.x = containerWidth / 2 - ball.width / 2;

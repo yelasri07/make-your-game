@@ -6,17 +6,10 @@ import { movementState } from "./paddle.js"
 
 export function gameStart() {
     const gameElement = document.querySelector('.game')
-    const startElement = document.querySelector('.start')
-    const pauseMenu = document.querySelector('.pause-menu')
-    const gameResultMenu = document.querySelector('.game-result-menu')
     const intro = document.querySelector(".intro");
 
-    gameResultMenu.style.display = 'none'
-    pauseMenu.style.display = 'none'
     gameElement.style.opacity = '1'
     intro.style.display = 'none';
-    startElement.style.display = 'none'
-
 }
 
 export function gameOver(type) {
@@ -54,6 +47,14 @@ export function gameOver(type) {
 
 export function gameRestart() {
     const bricksElement = document.querySelector('.bricks')
+    const pauseMenu = document.querySelector('.pause-menu')
+    const gameResultMenu = document.querySelector('.game-result-menu')
+    const intro = document.querySelector(".intro");
+
+    gameResultMenu.style.display = 'none'
+    pauseMenu.style.display = 'none'
+    intro.style.display = 'flex';
+
     bricksElement.remove()
     scoreBoard.timer = '03:00'
     scoreBoard.score = 0
@@ -64,7 +65,7 @@ export function gameRestart() {
     updateScoreBoard()
     resetBall()
     createBricks()
-    gameStart()
+    // gameStart()
 }
 
 export function gamePause() {
@@ -72,10 +73,12 @@ export function gamePause() {
     const pauseMenu = document.querySelector('.pause-menu')
     const ballElement = document.querySelector('.ball')
     const gameResultMenu = document.querySelector('.game-result-menu')
+
     cancelAnimationFrame(movementState.paddleAnimationId);
     movementState.paddleAnimationId = null;
     cancelAnimationFrame(ballAnimationId)
     clearInterval(x)
+
     if (pauseMenu.style.display === 'none' && gameResultMenu.style.display !== 'flex') {
         gameElement.style.opacity = '.6'
         pauseMenu.style.display = 'flex'
@@ -83,6 +86,8 @@ export function gamePause() {
     } else if (pauseMenu.style.display === 'flex' && !ball.isStarted) {
         ball.isStarted = true
         ball.isReset = false
+        gameResultMenu.style.display = 'none'
+        pauseMenu.style.display = 'none'
         gameStart()
         updateBallPosition(ballElement)
         countDown()
