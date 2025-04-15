@@ -79,6 +79,10 @@ h2 {
     animation: play 0.9s linear 1s infinite alternate;
 }
 
+.devlo span{
+    color: var(--lavender-gray);
+}
+
 @keyframes play {
     from {
         opacity: 0.5;

@@ -50,8 +50,7 @@ export function breakBrick() {
 
 export function createBricks() {
   const bricksElements = document.createElement("div");
-  // scoreDev = (brick.row * brick.column) / 2 * 100
-  scoreDev = 200
+  scoreDev = (brick.row * brick.column) / 2 * 100
 
   bricksElements.className = "bricks";
   let idIncrement = 0;
