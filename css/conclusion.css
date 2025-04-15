@@ -14,12 +14,9 @@
 }
 
 .victory{
-    position: absolute;
     z-index: 9999;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
     text-align: center;
+    width: 400px;
 }
 
 .victory > h3{
@@ -28,8 +25,15 @@
 }
 
 .victory > img{
-    width: 450px;
+    width: 400px;
     margin-top: 15px;
     border-radius: 20px;
     box-shadow: 0 1px 10px var(--pure-white);   
+    filter: grayscale(50%);
+    transition: .5s;
+    cursor: pointer;
+}
+
+.victory > img:hover {
+    filter: grayscale(20%);
 }
