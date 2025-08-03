@@ -43,6 +43,15 @@ func Player(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetData(w http.ResponseWriter, r *http.Request) {
+	data, err := os.ReadFile("data.json")
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": "Failed to read file",
+		})
+		return
+	}
+
+	fmt.Println(string(data))
 }
 
 func SaveData(w http.ResponseWriter, r *http.Request) {
@@ -80,6 +89,15 @@ func SaveData(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			ResponseJSON(w, http.StatusInternalServerError, map[string]any{
 				"error": "Failed to decode file data",
+			})
+			return
+		}
+	}
+
+	for _, p := range players {
+		if player.Name == p.Name {
+			ResponseJSON(w, http.StatusBadRequest, map[string]any{
+				"error": "This name already exists",
 			})
 			return
 		}
