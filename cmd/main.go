@@ -1,11 +1,20 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"log"
 	"net/http"
+	"os"
 )
+
+type PlayerData struct {
+	Rank  string `json:"rank"`
+	Name  string `json:"name"`
+	Score int    `json:"score"`
+	Time  string `json:"time"`
+}
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
@@ -19,18 +28,72 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	temp.Execute(w, nil)
 }
 
-func GetData(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+func Player(w http.ResponseWriter, r *http.Request) {
+	switch r.Method {
+	case http.MethodGet:
+		GetData(w, r)
+	case http.MethodPost:
+		SaveData(w, r)
+	default:
+		ResponseJSON(w, http.StatusMethodNotAllowed, map[string]any{
+			"error": "Method not allowed",
+		})
 		return
 	}
 }
 
+func GetData(w http.ResponseWriter, r *http.Request) {
+}
+
 func SaveData(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodPost {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+	var player PlayerData
+	if err := json.NewDecoder(r.Body).Decode(&player); err != nil {
+		ResponseJSON(w, http.StatusBadRequest, map[string]any{
+			"error": err,
+		})
 		return
 	}
+
+	const filename = "data.json"
+
+	if _, err := os.Stat(filename); err != nil {
+		_, err := os.Create(filename)
+		if err != nil {
+			ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+				"error": err,
+			})
+			return
+		}
+	}
+
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": err,
+		})
+		return
+	}
+
+	if len(data) == 0 {
+		a, err := json.Marshal(player)
+		fmt.Println(string(a))
+		if err != nil {
+			ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+				"error": err,
+			})
+			return
+		}
+	}
+
+	fmt.Println(player)
+	fmt.Println(err)
+
+	// err := os.WriteFile(filename, []byte(player.Name), 0666)
+	// fmt.Println(err)
+
+	ResponseJSON(w, http.StatusOK, map[string]any{
+		"message": "Player saved successfully!",
+	})
 }
 
 func AssetsHandler(w http.ResponseWriter, r *http.Request) {
@@ -39,7 +102,14 @@ func AssetsHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", HomeHandler)
+	http.HandleFunc("/api/player", Player)
 	http.HandleFunc("/assets/", AssetsHandler)
 	fmt.Println("server runing on http://localhost:8080/")
 	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+func ResponseJSON(w http.ResponseWriter, status int, message any) {
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(status)
+	json.NewEncoder(w).Encode(message)
 }
