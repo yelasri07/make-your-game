@@ -60,7 +60,7 @@ func SaveData(w http.ResponseWriter, r *http.Request) {
 		_, err := os.Create(filename)
 		if err != nil {
 			ResponseJSON(w, http.StatusInternalServerError, map[string]any{
-				"error": err,
+				"error": "Failed to create file",
 			})
 			return
 		}
@@ -69,27 +69,39 @@ func SaveData(w http.ResponseWriter, r *http.Request) {
 	data, err := os.ReadFile(filename)
 	if err != nil {
 		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
-			"error": err,
+			"error": "Failed to read file",
 		})
 		return
 	}
 
-	if len(data) == 0 {
-		a, err := json.Marshal(player)
-		fmt.Println(string(a))
+	var players []*PlayerData
+	if len(data) != 0 {
+		err = json.Unmarshal(data, &players)
 		if err != nil {
 			ResponseJSON(w, http.StatusInternalServerError, map[string]any{
-				"error": err,
+				"error": "Failed to decode file data",
 			})
 			return
 		}
 	}
 
-	fmt.Println(player)
-	fmt.Println(err)
+	players = append(players, &player)
 
-	// err := os.WriteFile(filename, []byte(player.Name), 0666)
-	// fmt.Println(err)
+	ply, err := json.Marshal(players)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": err,
+		})
+		return
+	}
+
+	err = os.WriteFile(filename, ply, 0666)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": "Failed to write file",
+		})
+		return
+	}
 
 	ResponseJSON(w, http.StatusOK, map[string]any{
 		"message": "Player saved successfully!",
