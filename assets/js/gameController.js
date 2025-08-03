@@ -4,6 +4,7 @@ import { ball, scoreBoard, user } from "./config.js"
 import { updateScoreBoard, x, countDown } from "./scoreBoard.js"
 import { movementState } from "./paddle.js"
 import { Input } from "./input.js"
+import { scoreHandling } from "./scoreHandling.js"
 
 export function gameStart() {
     const gameElement = document.querySelector('.game')
@@ -31,8 +32,10 @@ export function gameOver(type) {
             🏆 Welcome to the elite.</p>
         <img src="assets/images/ta7iyatL3alam.png" alt="soldier">
     `
-        if(!user.firstGame) {
-            Input(victory)
+        if (!user.firstGame) {
+            Input(victory,'win')
+        } else {
+            scoreHandling(victory,'win')
         }
     } else {
         victory.innerHTML = /*html*/`
@@ -44,6 +47,11 @@ export function gameOver(type) {
 
         <img src="assets/images/lose.png" alt="soldier">
     `
+     if (!user.firstGame) {
+            Input(victory,'lose')
+        } else {
+            scoreHandling(victory,'lose')
+        }
     }
     ball.isStarted = true
 }

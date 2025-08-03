@@ -44,11 +44,7 @@ export function setupEventListeners() {
             gamePause()
         }
 
-        if (event.key === 'r') {
-            if (pauseMenu.style.display === 'flex' || gameResultMenu.style.display === 'flex') {
-                gameRestart()
-            }
-        }
+        
     })
 
     addEventListener('keyup', (event) => {

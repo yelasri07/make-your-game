@@ -48,7 +48,9 @@ export const scoreBoard = {
 }
 export const user = {
     username: "",
-    firstGame: false
+    firstGame: false,
+    classment: 0,
+    from: 0
 }
 
 addEventListener('resize', () => {

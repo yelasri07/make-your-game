@@ -1,6 +1,7 @@
 import { user } from "./config.js"
+import { scoreHandling } from "./scoreHandling.js"
 
-export function Input(victory) {
+export function Input(victory,type) {
     const input = document.createElement('input')
     input.className = "username"
     input.type = 'text'
@@ -9,11 +10,12 @@ export function Input(victory) {
     input.placeholder = "Type your username..."
     const handleUsername = (e) => {
         if (e.key == "Enter" && e.target.value.trim() != "") {
-            
+
+            user.firstGame = true
+            user.username = e.target.value
             input.remove()
-            user.firstGame=true
-            user.username=e.target.value
             removeEventListener("keydown", handleUsername)
+            scoreHandling(victory,type)
         }
     }
     input.addEventListener("keydown", handleUsername)
