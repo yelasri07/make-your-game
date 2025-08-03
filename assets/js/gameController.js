@@ -29,7 +29,7 @@ export function gameOver(type) {
             🐗 You are now a HOG – Hunter of Gunmen.
             🏆 Welcome to the elite.</p>
 
-        <img src="images/ta7iyatL3alam.png" alt="soldier">
+        <img src="assets/images/ta7iyatL3alam.png" alt="soldier">
     `
     } else {
         victory.innerHTML = /*html*/`
@@ -39,7 +39,7 @@ export function gameOver(type) {
         🔄 But a real sniper never gives up.
         ⚔️ Return to training. Try again. And come back stronger.</p>
 
-        <img src="images/lose.png" alt="soldier">
+        <img src="assets/images/lose.png" alt="soldier">
     `
     }
     ball.isStarted = true
