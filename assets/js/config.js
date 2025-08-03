@@ -34,8 +34,8 @@ export const brick = {
     offSetLeft: 20,
     offSetTop: 20,
     marginTop: 40,
-    row: 3,
-    column: 6,
+    row: 1,
+    column: 1,
 }
 
 export const scoreBoard = {
@@ -45,6 +45,10 @@ export const scoreBoard = {
     minutes: 2,
     seconds: 60,
     ms: 10,
+}
+export const user = {
+    username: "",
+    firstGame: false
 }
 
 addEventListener('resize', () => {
