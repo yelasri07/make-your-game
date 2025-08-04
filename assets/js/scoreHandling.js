@@ -1,44 +1,37 @@
-import { user } from "./config.js"
-export function scoreHandling(victory, type) {
+import { GetData, SaveScore } from "../services/fetch.js";
+import { scoreBoard, user } from "./config.js"
+let data
+export async function scoreHandling(victory, type) {
 
-    let data = [
-        { "Rank": 0, "name": "Omar", "Score": 770, "time": "02:42" },
-        { "Rank": 0, "name": "Sam", "Score": 1400, "time": "07:01" },
-        { "Rank": 0, "name": "Sara", "Score": 830, "time": "03:08" },
-        { "Rank": 0, "name": "A.J.", "Score": 1720, "time": "10:45" },
-        { "Rank": 0, "name": "-.-", "Score": 1550, "time": "08:10" },
-        { "Rank": 0, "name": "iris", "Score": 1470, "time": "07:32" },
-        { "Rank": 0, "name": "Rian", "Score": 700, "time": "02:16" },
-        { "Rank": 0, "name": "O.J.", "Score": 1640, "time": "09:35" },
-        { "Rank": 0, "name": "Kave", "Score": 1800, "time": "12:01" },
-        { "Rank": 0, "name": "Mo", "Score": 1280, "time": "05:50" },
-        { "Rank": 0, "name": "Alex", "Score": 1200, "time": "05:11" },
-        { "Rank": 0, "name": "Dima", "Score": 900, "time": "03:31" },
-        { "Rank": 0, "name": "Badr", "Score": 1150, "time": "04:53" },
-        { "Rank": 0, "name": "Yass", "Score": 1050, "time": "04:10" },
-        { "Rank": 0, "name": "Zac", "Score": 980, "time": "03:55" },
-        { "Rank": 0, "name": "Tariq", "Score": 560, "time": "01:29" },
-        { "Rank": 0, "name": "Nina", "Score": 1100, "time": "04:40" },
-        { "Rank": 0, "name": "Lina", "Score": 1330, "time": "06:22" },
-        { "Rank": 0, "name": "Maya", "Score": 630, "time": "01:54" },
-        { "Rank": 0, "name": "Salim", "Score": 500, "time": "01:03" }
-    ]
+    const score = {
+        name: user.username,
+        score: scoreBoard.score,
+        time: `${2 - scoreBoard.minutes}:${60 - scoreBoard.seconds}`
+    }
+    let method = "PUT"
+    if (user.firstGame) {
+        method = "POST"
+    }
 
+    await SaveScore(score, method)
+
+    data = await GetData()
     data = data.sort((a, b) => {
-        if (a.Score < b.Score) {
+        if (a.score < b.score) {
             return 1
-        } else if (a.Score > b.Score) {
+        } else if (a.score > b.score) {
             return -1
         } else {
             return 0
         }
     })
-
+    const rank = GetRankUser()
     const msgCongrats = document.createElement('p')
-    msgCongrats.textContent = `${type === 'win' ? "Congrats" : ""} ${user.username}, you are in the top 6%, on the 2nd position. `
+    const classment = (rank * 100) / data.length
+    msgCongrats.textContent = `${type === 'win' ? "Congrats" : ""} ${user.username}, you are in the top ${Math.round(classment)}%, on the ${rank == 1 ? rank + "th" : rank == 2 ? rank + "nd" : rank == 3 ? rank + "rd" : rank + "th"} position. `
     victory.appendChild(msgCongrats)
     const table = document.createElement('table')
-    //table.border = "1px"
+    table.className = "table-scores"
     table.innerHTML =/*html*/`
         <tr>
             <th>Rank</th>
@@ -56,14 +49,16 @@ export function scoreHandling(victory, type) {
 
 function CreateTable(table, data) {
     const PaginateTable = data.slice(user.from, user.from + 5)
-    PaginateTable.map((ele) => {
+    PaginateTable.map((ele, index) => {
         const cont = document.createElement('tr')
+        cont.className = "current5"
         const tdR = document.createElement('td')
-        tdR.textContent = ele.Rank
+        const rank = index + 1 + user.from
+        tdR.textContent = rank == 1 ? rank + "th" : rank == 2 ? rank + "nd" : rank == 3 ? rank + "rd" : rank + "th"
         const tdN = document.createElement('td')
         tdN.textContent = ele.name
         const tdS = document.createElement('td')
-        tdS.textContent = ele.Score
+        tdS.textContent = ele.score
         const tdT = document.createElement('td')
         tdT.textContent = ele.time
         cont.appendChild(tdR)
@@ -75,7 +70,10 @@ function CreateTable(table, data) {
 
 }
 
-
+function GetRankUser() {
+    const rank = data.findIndex(ele => ele.name === user.username)
+    return rank !== -1 ? rank + 1 : null
+}
 function Pagination(dataLen) {
     const div = document.createElement('div')
     const prev = document.createElement('button')
@@ -89,5 +87,43 @@ function Pagination(dataLen) {
     div.appendChild(prev)
     div.appendChild(page)
     div.appendChild(next)
+    next.addEventListener('click', UpdateTableAndPagination)
+    prev.addEventListener('click', UpdateTableAndPagination)
     return div
+}
+
+function UpdateTableAndPagination(e) {
+    const table = document.querySelector('.table-scores')
+    const contentTable = document.querySelectorAll('.current5')
+    const paginationDiv = e.target.parentNode
+    const pageText = paginationDiv.querySelector('p')
+
+    contentTable.forEach(ele => {
+        ele.remove()
+    })
+
+    if (e.target.textContent === "next") {
+        user.from += 5
+        if (user.from >= data.length) {
+            user.from = data.length - (data.length % 5 || 5)
+        }
+    } else if (e.target.textContent === "previous") {
+        user.from -= 5
+        if (user.from < 0) {
+            user.from = 0
+        }
+    } else {
+        alert('You try to hack us?!..')
+        return
+    }
+
+    CreateTable(table, data)
+
+    const prev = paginationDiv.querySelector('button:first-child')
+    const next = paginationDiv.querySelector('button:last-child')
+
+    prev.disabled = user.from <= 0
+    next.disabled = user.from + 5 >= data.length
+    const page = user.from + 5 > data.length ? data.length : user.from + 5
+    pageText.textContent = `${page}/${data.length}`
 }
