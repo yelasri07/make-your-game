@@ -1,11 +1,18 @@
 const API_URL = "http://localhost:8080/"
 export async function SaveScore(score, method) {
-    const resp = await fetch(`${API_URL}api/player`, {
-        method: method,
-        body: JSON.stringify(score)
-    })
-    if (!resp.ok || resp.status != 200) {
-        alert("name already taken.")
+    try {
+        const resp = await fetch(`${API_URL}api/player`, {
+            method: method,
+            body: JSON.stringify(score)
+        })
+        if (!resp.ok || resp.status != 200) {
+            alert("name already taken.")
+            return null
+        }
+        return true
+    } catch (e) {
+        alert(e)
+        return null
     }
 }
 

@@ -13,8 +13,13 @@ export async function scoreHandling(victory, type) {
         method = "POST"
     }
 
-    await SaveScore(score, method)
-
+    const resp = await SaveScore(score, method)
+    if (!resp) {
+        console.log("lkji");
+        
+        user.firstGame = true
+        return null
+    }
     data = await GetData()
     data = data.sort((a, b) => {
         if (a.score < b.score) {

@@ -8,16 +8,24 @@ export function Input(victory, type) {
     input.name = 'username'
     input.id = 'username'
     input.placeholder = "Type your username..."
-    const handleUsername = (e) => {
+    const handleUsername = async (e) => {
         if (e.key == "Enter" && e.target.value.trim() != "") {
-
             user.username = e.target.value
-            input.remove()
-            removeEventListener("keydown", handleUsername)
-            scoreHandling(victory, type)
+            const result = await scoreHandling(victory, type)
+
+            if (result === null) {
+                // Échec : score non enregistré
+                console.log("Erreur lors de l'enregistrement du score")
+                user.firstGame = true
+                return
+            }        
+            // Succès
             user.firstGame = false
+            input.remove()
+            input.removeEventListener("keydown", handleUsername)
         }
     }
+
     input.addEventListener("keydown", handleUsername)
     victory.appendChild(input)
 }
