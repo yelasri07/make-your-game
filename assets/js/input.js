@@ -14,12 +14,11 @@ export function Input(victory, type) {
             const result = await scoreHandling(victory, type)
 
             if (result === null) {
-                // Échec : score non enregistré
                 console.log("Erreur lors de l'enregistrement du score")
                 user.firstGame = true
                 return
-            }        
-            // Succès
+            }
+            
             user.firstGame = false
             input.remove()
             input.removeEventListener("keydown", handleUsername)

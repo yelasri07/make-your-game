@@ -50,7 +50,8 @@ export const user = {
     username: "",
     firstGame: true,
     classment: 0,
-    from: 0
+    from: 0,
+    page:0
 }
 
 addEventListener('resize', () => {

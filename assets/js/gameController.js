@@ -24,13 +24,17 @@ export function gameOver(type) {
     gameElement.style.opacity = '.6'
     if (type === 'win') {
         victory.innerHTML = /*html*/`
-        <h3>🫡 Mission accomplished, <span>Soldier!</span></h3>
+       <div class="concHead">
+      <div class="concCont">
+      <h3>🫡 Mission accomplished, <span>Soldier!</span></h3>
         <p>🎯 You’ve shattered every brick with sniper precision.
             ❤️ You kept all your lives safe — not a single mistake.
             🇲🇦 The Moroccan snipers salute you.
             🐗 You are now a HOG – Hunter of Gunmen.
             🏆 Welcome to the elite.</p>
+      </div>
         <img src="assets/images/ta7iyatL3alam.png" alt="soldier">
+       </div>
     `
         if (user.firstGame) {
             Input(victory, 'win')
@@ -73,6 +77,7 @@ export function gameRestart() {
     scoreBoard.minutes = 2
     scoreBoard.seconds = 60
     scoreBoard.ms = 10
+    user.from = 0
     updateScoreBoard()
     resetBall()
     createBricks()
