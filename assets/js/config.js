@@ -48,7 +48,7 @@ export const scoreBoard = {
 }
 export const user = {
     username: "",
-    firstGame: false,
+    firstGame: true,
     classment: 0,
     from: 0
 }

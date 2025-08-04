@@ -32,10 +32,10 @@ export function gameOver(type) {
             🏆 Welcome to the elite.</p>
         <img src="assets/images/ta7iyatL3alam.png" alt="soldier">
     `
-        if (!user.firstGame) {
-            Input(victory,'win')
+        if (user.firstGame) {
+            Input(victory, 'win')
         } else {
-            scoreHandling(victory,'win')
+            scoreHandling(victory, 'win')
         }
     } else {
         victory.innerHTML = /*html*/`
@@ -47,10 +47,10 @@ export function gameOver(type) {
 
         <img src="assets/images/lose.png" alt="soldier">
     `
-     if (!user.firstGame) {
-            Input(victory,'lose')
+        if (user.firstGame) {
+            Input(victory, 'lose')
         } else {
-            scoreHandling(victory,'lose')
+            scoreHandling(victory, 'lose')
         }
     }
     ball.isStarted = true
