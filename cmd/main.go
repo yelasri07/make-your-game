@@ -18,14 +18,26 @@ type PlayerData struct {
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
-		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		ResponseJSON(w, http.StatusMethodNotAllowed, map[string]any{
+			"error": "Method not allowed",
+		})
 		return
 	}
+
 	temp, err := template.ParseFiles("index.html")
 	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": err,
+		})
 		return
 	}
-	temp.Execute(w, nil)
+
+	err = temp.Execute(w, nil)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": err,
+		})
+	}
 }
 
 func Player(w http.ResponseWriter, r *http.Request) {
@@ -51,7 +63,18 @@ func GetData(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Println(string(data))
+	var players []*PlayerData
+	err = json.Unmarshal(data, &players)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": "Failed to decode file data",
+		})
+		return
+	}
+
+	ResponseJSON(w, http.StatusOK, map[string]any{
+		"data": players,
+	})
 }
 
 func SaveData(w http.ResponseWriter, r *http.Request) {
