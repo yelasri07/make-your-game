@@ -46,6 +46,8 @@ func Player(w http.ResponseWriter, r *http.Request) {
 		GetData(w, r)
 	case http.MethodPost:
 		SaveData(w, r)
+	case http.MethodPut:
+		UpdateData(w, r)
 	default:
 		ResponseJSON(w, http.StatusMethodNotAllowed, map[string]any{
 			"error": "Method not allowed",
@@ -146,6 +148,63 @@ func SaveData(w http.ResponseWriter, r *http.Request) {
 
 	ResponseJSON(w, http.StatusOK, map[string]any{
 		"message": "Player saved successfully!",
+	})
+}
+
+func UpdateData(w http.ResponseWriter, r *http.Request) {
+	var player PlayerData
+	if err := json.NewDecoder(r.Body).Decode(&player); err != nil {
+		ResponseJSON(w, http.StatusBadRequest, map[string]any{
+			"error": err,
+		})
+		return
+	}
+
+	const filename = "data.json"
+
+	data, err := os.ReadFile(filename)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": "Failed to read file",
+		})
+		return
+	}
+
+	var players []*PlayerData
+	err = json.Unmarshal(data, &players)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": "Failed to decode file data",
+		})
+		return
+	}
+
+	for _, p := range players {
+		if p.Name == player.Name {
+			p.Score = player.Score
+			p.Time = player.Time
+			break
+		}
+	}
+
+	ply, err := json.Marshal(players)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": err,
+		})
+		return
+	}
+
+	err = os.WriteFile(filename, ply, 0666)
+	if err != nil {
+		ResponseJSON(w, http.StatusInternalServerError, map[string]any{
+			"error": "Failed to write file",
+		})
+		return
+	}
+
+	ResponseJSON(w, http.StatusOK, map[string]any{
+		"message": "Player updated successfully!",
 	})
 }
 
