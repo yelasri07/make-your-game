@@ -11,13 +11,11 @@ export function setupEventListeners() {
     const continueButton = document.querySelector('.continue-button')
     const pauseMenu = document.querySelector('.pause-menu')
     const gameResultMenu = document.querySelector('.game-result-menu')
-    let devlo = document.querySelector('.devlo')
 
     addEventListener('keydown', (event) => {
         if (event.key === ' ' && !ball.isStarted) {
             gameResultMenu.style.display = 'none'
             pauseMenu.style.display = 'none'
-            devlo.style.display = 'none'
 
             ball.isStarted = true
             ball.isReset = false
@@ -40,7 +38,7 @@ export function setupEventListeners() {
             }
         }
 
-        if (event.key === 'Escape' && ballAnimationId && (devlo.style.display === '' || devlo.style.display === 'none' )) {
+        if (event.key === 'Escape' && ballAnimationId) {
             gamePause()
         }
 

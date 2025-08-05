@@ -5,8 +5,10 @@ export async function SaveScore(score, method) {
             method: method,
             body: JSON.stringify(score)
         })
+
+        let data = await resp.json()
         if (!resp.ok || resp.status != 200) {
-            alert("name already taken.")
+            alert(data.error)
             return null
         }
         return true

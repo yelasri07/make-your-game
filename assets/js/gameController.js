@@ -18,39 +18,18 @@ export function gameOver(type) {
     const gameResultMenu = document.querySelector('.game-result-menu')
     const victory = document.querySelector('.victory')
     const gameElement = document.querySelector('.game')
+    victory.innerHTML = ''
     cancelAnimationFrame(ballAnimationId)
     clearInterval(x)
     gameResultMenu.style.display = 'flex'
     gameElement.style.opacity = '.6'
     if (type === 'win') {
-        victory.innerHTML = /*html*/`
-       <div class="concHead">
-      <div class="concCont">
-      <h3>🫡 Mission accomplished, <span>Soldier!</span></h3>
-        <p>🎯 You’ve shattered every brick with sniper precision.
-            ❤️ You kept all your lives safe — not a single mistake.
-            🇲🇦 The Moroccan snipers salute you.
-            🐗 You are now a HOG – Hunter of Gunmen.
-            🏆 Welcome to the elite.</p>
-      </div>
-        <img src="assets/images/ta7iyatL3alam.png" alt="soldier">
-       </div>
-    `
         if (user.firstGame) {
             Input(victory, 'win')
         } else {
             scoreHandling(victory, 'win')
         }
     } else {
-        victory.innerHTML = /*html*/`
-        <h3>☠️ Mission failed, <span>Soldier...</span></h3>
-        <p>💔 You lost your lives before the job was done.
-        Precision requires discipline, and today... you fell short.
-        🔄 But a real sniper never gives up.
-        ⚔️ Return to training. Try again. And come back stronger.</p>
-
-        <img src="assets/images/lose.png" alt="soldier">
-    `
         if (user.firstGame) {
             Input(victory, 'lose')
         } else {
@@ -81,7 +60,6 @@ export function gameRestart() {
     updateScoreBoard()
     resetBall()
     createBricks()
-    // gameStart()
 }
 
 export function gamePause() {
